@@ -1,0 +1,44 @@
+1;Crunches;ABS;pics/abs/abs1.gif
+2;Seated V Sits;ABS;pics/abs/abs2.gif
+3;Dumbbell Incline Shrug;BACK;pics/back/neck1.gif
+4;Weighted Russian Twist Feet Raised;ABS;pics/abs/abs3.gif
+5;Forearm Plank;ABS;pics/abs/abs4.gif
+6;Stiff Leg Dumbbell Deadlift;BACK;pics/back/back1.gif
+7;Seated Bent Over Rear Delt Raise;BACK;pics/back/back2.gif
+8;Bent-over Rear Delt Raise;BACK;pics/back/back3.gif
+9;Dumbbell Row;BACK;pics/back/back4.gif
+10;Wide Push-up;CHEST;pics/chest/chest5.gif
+11;Biceps Curl;BICEPS;pics/biceps/biceps4.gif
+12;Dumbbell Flat Bench Press;CHEST;pics/chest/chest1.gif
+13;Barbell Front Raise;SHOULDERS;pics/shoulders/shoulder1.gif
+14;Dumbbell Lateral Raise;SHOULDERS;pics/shoulders/shoulder6.gif
+15;Lying Dumbbell Triceps Extension;TRICEPS;pics/triceps/triceps1.gif
+16;Overhead Triceps Extension;TRICEPS;pics/triceps/triceps2.gif
+17;Dumbbell Concentration Curl;BICEPS;pics/biceps/biceps2.gif
+18;Incline Hip and Leg Raise;ABS;pics/abs/abs7.gif
+19;Decline Sit Up;ABS;pics/abs/abs5.gif
+20;Bent Over Dumbbell Row;BACK;pics/back/back6.gif
+21;Bent Knee Lying Twist;ABS;pics/abs/abs6.gif
+22;Bent Over Barbell Row;BACK;pics/back/back5.gif
+23;Barbell Curl;BICEPS;pics/biceps/biceps1.gif
+24;Standing Dumbbell Curl;BICEPS;pics/biceps/biceps3.gif
+25;Seated Wrist Curl;BICEPS;pics/biceps/arms1.gif
+26;Tricep Extension Push-up;TRICEPS;pics/triceps/triceps7.gif
+27;Dumbbell Fly;CHEST;pics/chest/chest2.gif
+28;Wide Grip Bench Press;CHEST;pics/chest/chest3.gif
+29;Decline Dumbbell Bench Press;CHEST;pics/chest/chest4.gif
+30;Barbell Deadlift;LEGS;pics/legs/butt1.gif
+31;Barbell Bulgarian Split Squat;LEGS;pics/legs/legs4.gif
+32;Barbell Reverse Lunge;LEGS;pics/legs/legs1.gif
+33;Barbell Hip Thruster;LEGS;pics/legs/legs3.gif
+34;Dumbbell Deadlift;LEGS;pics/legs/legs5.gif
+35;Hip Thruster;LEGS;pics/legs/legs2.gif
+36;Dumbbell Seated Shoulder Press;SHOULDERS;pics/shoulders/shoulder5.gif
+37;Dumbbell Upright Row;SHOULDERS;pics/shoulders/shoulder2.gif
+38;Incline Dumbbell Press;SHOULDERS;pics/shoulders/shoulder3.gif
+39;One-Arm Side Lateral Raise;SHOULDERS;pics/shoulders/shoulder4.gif
+40;Close-Grip Dumbbell Bench Press;TRICEPS;pics/triceps/triceps5.gif
+41;Lying Barbell Skull Crushers;TRICEPS;pics/triceps/triceps6.gif
+43;Lying One-Arm Dumbbell Triceps Extension;TRICEPS;pics/triceps/triceps4.gif
+44;Chair Dips;TRICEPS;pics/triceps/triceps3.gif
+45;Flat Bench Hyperextension;BACK;pics/back/back7.gif
