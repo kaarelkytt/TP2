@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FromFile {
@@ -43,7 +42,7 @@ public class FromFile {
                 String[] workoutData = data[i].split(";");
 
                 Workout workout = new Workout(dao.getExerciseById(Integer.parseInt(workoutData[0])),
-                        Arrays.stream(workoutData[1].split("-")).mapToInt(Integer::parseInt).toArray(),
+                        workoutData[1],
                         workoutData[2].isEmpty() ? 0 : Float.parseFloat(workoutData[2]),
                         Integer.parseInt(workoutData[3]),
                         date);

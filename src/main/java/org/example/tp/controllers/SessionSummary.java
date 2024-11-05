@@ -34,7 +34,7 @@ public class SessionSummary implements Initializable {
     @FXML
     public TableColumn<Workout, String> nameTableColumn;
     @FXML
-    public TableColumn<Workout, Double> weightTableColumn;
+    public TableColumn<Workout, Float> weightTableColumn;
     @FXML
     public TableColumn<Workout, String> repetitionTableColumn;
     @FXML
@@ -60,7 +60,7 @@ public class SessionSummary implements Initializable {
 
         exercisesTableView.setItems(dao.getSessionWorkouts());
         nameTableColumn.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getExercise().getName()));
-        weightTableColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
+        weightTableColumn.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getWeight()));
         repetitionTableColumn.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getRepetitionsString("-")));
         durationTableColumn.setCellValueFactory(entry -> new SimpleObjectProperty<>(getFormattedTimeFromMillis(entry.getValue().getDuration() * 1000, false)));
     }

@@ -23,28 +23,38 @@ import static org.example.tp.dataobjects.Exercise.Category.*;
 import static org.example.tp.logic.Tab.cellFactories;
 import static org.example.tp.logic.Tab.cellFactoriesWithCategory;
 
-// TODO current workout delete with double click
 // TODO dumbell calculator / weights dropdown menu showing all weights available
 // TODO pics of dumbell with highlighted weights
+
+// TODO reorder with drag and drop
+// TODO auto sort (less weight change, shuffle types, priority - preffered ex. in the beginning)
+
+// TODO history calendar view and tabular view
+// TODO history - redo old workout
+
+// TODO all workout exercises displayed
+// TODO show time and duration someway better (progress bar and times on the bar and at the end)
+
+// TODO autofill repetitions with TAB
+// TODO remainders (supplements at the beginning and stop exercise on the watch at the end)
+
+
+// later
 // TODO window size change
 // TODO better logo
 // TODO review the weight-rep relation graph
-// TODO avg duration instead of last time duration
-// TODO refresh workout tab each time (when chancing exercises workout doesn't update immidiately)
-
-// TODO first what kind of exercises then list of them
-// TODO reorder with drag and drop
 // TODO more exercises
-// TODO history - redo old workout
-// TODO auto sort (less weight change, shuffle types, priority - preffered ex. in the beginning)
-// TODO all workout exercises displayed
-// TODO show time and duration somway better (progress bar and times on the bar and at the end)
-// TODO autofill repetitions with TAB
-// TODO remainders (supplements at the beginning and stop exercise on the watch at the end)
-// TODO history calendar view and tabular view
 
-// TODO database
 // TODO files are for import and export
+
+/*
+DONE
+* database
+* refresh workout tab each time (when chancing exercises workout doesn't update immidiately)
+* avg duration instead of last time duration
+* current workout delete with double click
+
+ */
 
 
 public class ExerciseTab implements Initializable {
@@ -183,6 +193,12 @@ public class ExerciseTab implements Initializable {
             });
         }
 
+        selectedExercisesList.setOnMouseClicked(event -> {
+        updateExerciseInfo(selectedExercisesList);
+        if (event.getClickCount() == 2)
+            removeExercise();
+        });
+
     }
 
     private void loadExercises() {
@@ -312,7 +328,7 @@ public class ExerciseTab implements Initializable {
         if (lastWorkout != null) {
             weightLabel.setText(Float.toString(lastWorkout.getWeight()));
             repetitionsLabel.setText(lastWorkout.getRepetitionsString(" - "));
-            durationLabel.setText(lastWorkout.getDurationString());
+            durationLabel.setText(dao.averageDurationString(currentExercise));
 
             if (lastWorkout.getComment() != null) {
                 notesHeaderLable.setText("Notes");

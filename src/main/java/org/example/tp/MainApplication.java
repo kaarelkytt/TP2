@@ -38,13 +38,13 @@ public class MainApplication extends Application {
         workoutTab.setText("Workout");
         workoutTab.setClosable(false);
         WorkoutTab workoutTabContoller = new WorkoutTab(dao);
-        workoutTab.setContent(loadControls("WorkoutTab.fxml", workoutTabContoller));
+        workoutTab.setContent(loadControls("/org/example/tp/ui/WorkoutTab.fxml", workoutTabContoller));
 
         Tab exerciseTab = new Tab();
         exerciseTab.setText("Exercise");
         exerciseTab.setClosable(false);
         ExerciseTab exerciseTabController = new ExerciseTab(dao);
-        exerciseTab.setContent(loadControls("ExerciseTab.fxml", exerciseTabController));
+        exerciseTab.setContent(loadControls("/org/example/tp/ui/ExerciseTab.fxml", exerciseTabController));
 
         TabPane tabPane = new TabPane(exerciseTab, workoutTab);
         tabPane.setOnMouseClicked(event -> {
@@ -81,7 +81,8 @@ public class MainApplication extends Application {
         primaryStage.setResizable(true);
         primaryStage.setMinWidth(1150);
         primaryStage.setMinHeight(665);
-        primaryStage.getIcons().add(new Image("org\\example\\tp\\pics\\test.png"));
+        primaryStage.getIcons().add(new Image("file:src\\main\\resources\\org\\example\\tp\\pics\\test.png"));
+
         primaryStage.show();
     }
 }

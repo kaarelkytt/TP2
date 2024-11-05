@@ -17,10 +17,7 @@ ext {
   junitVersion = '5.10.2'
 }
 
-sourceCompatibility = '21'
-targetCompatibility = '21'
-
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
   options.encoding = 'UTF-8'
 }
 
@@ -35,9 +32,11 @@ javafx {
 }
 
 dependencies {
-
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+  implementation 'com.h2database:h2:2.3.232'
+  implementation 'javax.persistence:javax.persistence-api:2.2'
+  implementation 'org.hibernate:hibernate-core:5.6.15.Final'
 }
 
 test {

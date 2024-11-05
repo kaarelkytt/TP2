@@ -133,7 +133,7 @@ public class WorkoutTab implements Initializable {
 
         if (selectedExercisesList.getItems().isEmpty()){
             clearExerciseInfo();
-        } else if (exerciseName.getText().isEmpty()) {
+        } else {
             updateExerciseInfo();
         }
 
@@ -169,6 +169,9 @@ public class WorkoutTab implements Initializable {
 
 
     private void updateExerciseInfo() {
+        currentExerciseIndex = Math.min(selectedExercisesList.getItems().size() - 1, currentExerciseIndex);
+        System.out.println(currentExerciseIndex);
+
         Exercise currentExercise = selectedExercisesList.getItems().get(currentExerciseIndex);
         Workout lastWorkout = dao.findLastWorkout(currentExercise);
         Workout currentWorkout = dao.getSessionWorkouts().get(currentExerciseIndex);
@@ -179,7 +182,7 @@ public class WorkoutTab implements Initializable {
             weightLabel.setText(Float.toString(lastWorkout.getWeight()));
             weightTextField.setText(Float.toString(lastWorkout.getWeight()));
             repetitionsLabel.setText(lastWorkout.getRepetitionsString(" - "));
-            durationLabel.setText(lastWorkout.getDurationString());
+            durationLabel.setText(dao.averageDurationString(currentExercise));
             commentTextArea.setPromptText(lastWorkout.getComment());
         } else {
             weightLabel.setText("NaN");
@@ -287,7 +290,7 @@ public class WorkoutTab implements Initializable {
 
         running = !running;
         pauseButton.setText(running ? "Pause" : "Continue");
-        exerciseImage.setImage(running ? selectedExercisesList.getItems().get(currentExerciseIndex).getImage() : new Image("org/example/tp/pics/pause.png"));
+        exerciseImage.setImage(running ? selectedExercisesList.getItems().get(currentExerciseIndex).getImage() : new Image("file:src/maain/resources/org/example/tp/pics/pause.png"));
     }
 
 
@@ -357,7 +360,7 @@ public class WorkoutTab implements Initializable {
         saveCurrentWorkout();
         newSession.setDuration((System.currentTimeMillis() - startTimeMillis) / 1000);
         running = false;
-        exerciseImage.setImage(new Image("org/example/tp/pics/pause.png"));
+        exerciseImage.setImage(new Image("file:src/maain/resources/org/example/tp/pics/pause.png"));
 
         if (!showSummaryDialog()){
             pauseWorkout();
@@ -392,7 +395,7 @@ public class WorkoutTab implements Initializable {
         Scene scene = new Scene(root);
         SessionSummary sessionSummary = new SessionSummary(dao, newSession, stage);
 
-        root.getChildren().add(loadControls("SessionSummary.fxml", sessionSummary));
+        root.getChildren().add(loadControls("/org/example/tp/ui/SessionSummary.fxml", sessionSummary));
 
         stage.setScene(scene);
         stage.setResizable(false);

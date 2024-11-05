@@ -1,18 +1,26 @@
 package org.example.tp.dataobjects;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
+@Entity
 public class Workout {
-    private final Exercise exercise;
-    private final LocalDate date;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "exercise_id")
+    private Exercise exercise;
+    private LocalDate date;
     private float weight;
-    private int[] repetitions;
+    private String repetitions;
     private long duration;
     private String comment;
 
-    public Workout(Exercise exercise, int[] repetitions, float weight, int duration, LocalDate date) {
+
+    public Workout(Exercise exercise, String repetitions, float weight, int duration, LocalDate date) {
         this.exercise = exercise;
         this.repetitions = repetitions;
         this.weight = weight;
@@ -25,6 +33,9 @@ public class Workout {
         this.date = date;
     }
 
+    public Workout() {
+    }
+
     public void setComment(String comment) {
         this.comment = comment;
     }
@@ -34,7 +45,10 @@ public class Workout {
     }
 
     public void setRepetitions(int[] repetitions) {
-        this.repetitions = repetitions;
+        this.repetitions = Arrays.toString(repetitions)
+                .replace(", ", "-")
+                .replace("[", "")
+                .replace("]", "");
     }
 
     public void setDuration(long duration) {
@@ -46,7 +60,10 @@ public class Workout {
     }
 
     public int[] getRepetitions() {
-        return repetitions;
+        if (repetitions == null || repetitions.isEmpty()) {
+            return null;
+        }
+        return Arrays.stream(repetitions.split("-")).mapToInt(Integer::parseInt).toArray();
     }
 
     public float getWeight() {
@@ -75,17 +92,14 @@ public class Workout {
     }
 
     public String getRepetitionsString(String separator) {
-        return Arrays.toString(repetitions)
-                .replace(", ", separator)
-                .replace("[", "")
-                .replace("]", "");
+        return repetitions.replace("-", separator);
     }
 
     @Override
     public String toString() {
         return "Workout{" +
                 "exercise=" + exercise +
-                ", repetitions=" + Arrays.toString(repetitions) +
+                ", repetitions=" + repetitions +
                 ", weight=" + weight +
                 ", duration=" + duration +
                 '}';

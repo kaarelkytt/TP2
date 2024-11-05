@@ -2,11 +2,16 @@ package org.example.tp.dataobjects;
 
 import javafx.scene.image.Image;
 
+import javax.persistence.*;
+
+@Entity
 public class Exercise {
-    private final int id;
-    private final String name;
-    private final Category category;
-    private final Image image;
+    @Id
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    private String name;
+    private Category category;
+    private String imagePath;
 
     public enum Category {
         ABS,
@@ -18,15 +23,14 @@ public class Exercise {
         LEGS
     }
 
-    // TODO correct image path in file
+    public Exercise() {
+    }
 
     public Exercise(int id, String name, Category category, String imagePath) {
         this.id = id;
         this.name = name;
         this.category = category;
-        System.out.println("src\\main\\resources\\org\\example\\tp\\" + imagePath);
-        this.image = new Image("org/example/tp/" + imagePath);
-        //src/main/resources/org/example/tp/pics
+        this.imagePath = imagePath;
     }
 
     public Exercise(int id, String name, String category, String imagePath) {
@@ -46,7 +50,7 @@ public class Exercise {
     }
 
     public Image getImage() {
-        return image;
+        return new Image("file:src/main/resources/org/example/tp/" + imagePath);
     }
 
     @Override
@@ -55,7 +59,7 @@ public class Exercise {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", category=" + category +
-                ", image='" + image + '\'' +
+                ", image='" + imagePath + '\'' +
                 '}';
     }
 }

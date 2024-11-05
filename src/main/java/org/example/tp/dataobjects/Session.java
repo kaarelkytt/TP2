@@ -1,15 +1,20 @@
 package org.example.tp.dataobjects;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Session {
-    private final int id;
+    @Id
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String name;
-    private final LocalDateTime dateTime;
+    private LocalDateTime dateTime;
     private long duration;
     private String comment;
+    @OneToMany
     private final List<Workout> workouts = new ArrayList<>();
 
     public Session(int id, String name, LocalDateTime dateTime, int duration) {
@@ -22,6 +27,9 @@ public class Session {
     public Session(int id, LocalDateTime dateTime) {
         this.id = id;
         this.dateTime = dateTime;
+    }
+
+    public Session() {
     }
 
     public void setComment(String comment) {
