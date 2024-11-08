@@ -1,5 +1,6 @@
 package org.example.tp.controllers;
 
+import javafx.application.Platform;
 import org.example.tp.dao.DAO;
 import org.example.tp.dataobjects.*;
 import javafx.animation.AnimationTimer;
@@ -32,6 +33,7 @@ public class WorkoutTab implements Initializable {
     private long startTimeMillis = 0;
     private long exerciseStartTimeMillis;
     private AnimationTimer animationTimer;
+    private TextField[] reps;
 
 
     @FXML
@@ -85,14 +87,18 @@ public class WorkoutTab implements Initializable {
     @FXML
     private ImageView exerciseImage;
     @FXML
-    private ImageView nextExerciseImage;
+    private ImageView dumbellImage;
 
     @FXML
-    private ListView<Exercise> selectedExercisesList;
+    private ListView<Workout> sessionWorkoutsList;
 
     @FXML
-    public void startButtonClicked() {
+    public void startButtonClicked() throws IOException {
         startSession();
+    }
+    @FXML
+    public void finishButtonClicked() throws IOException {
+        saveSession();
     }
     @FXML
     public void pauseButtonClicked() {
@@ -106,13 +112,14 @@ public class WorkoutTab implements Initializable {
     public void previousButtonClicked() {
         previousExercise();
     }
+
     @FXML
     public void repetitionBoxUpdate() {
         updateRepetitionBox();
     }
     @FXML
-    public void finishButtonClicked() throws IOException {
-        saveSession();
+    public void weightUpdate() {
+        updateDumbellImage();
     }
 
 
@@ -125,13 +132,17 @@ public class WorkoutTab implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        reps = new TextField[]{repsTextField1, repsTextField2, repsTextField3, repsTextField4, repsTextField5};
     }
 
 
     public void updateTab() {
-        cellFactories(dao.getSessionExercises(), selectedExercisesList);
+        // DEL
+        System.out.println("Updating Tab: ex #" + currentExerciseIndex);
 
-        if (selectedExercisesList.getItems().isEmpty()){
+        cellFactoriesWithImages(dao.getSessionWorkouts(), sessionWorkoutsList);
+
+        if (sessionWorkoutsList.getItems().isEmpty()){
             clearExerciseInfo();
         } else {
             updateExerciseInfo();
@@ -151,6 +162,11 @@ public class WorkoutTab implements Initializable {
         repsTextField3.setText("");
         repsTextField4.setText("");
         repsTextField5.setText("");
+        repsTextField1.setPromptText("");
+        repsTextField2.setPromptText("");
+        repsTextField3.setPromptText("");
+        repsTextField4.setPromptText("");
+        repsTextField5.setPromptText("");
         durationLabel.setText("");
         currentExerciseDurationLabel.setText("00:00:00");
         commentTextArea.setPromptText("");
@@ -161,7 +177,7 @@ public class WorkoutTab implements Initializable {
         estimatedEndLabel.setText("00:00:00");
         estimatedDurationLabel.setText("00:00:00");
         exerciseImage.setImage(null);
-        nextExerciseImage.setImage(null);
+        dumbellImage.setImage(null);
         updateRepetitionBox();
 
         currentExerciseIndex = 0;
@@ -169,12 +185,15 @@ public class WorkoutTab implements Initializable {
 
 
     private void updateExerciseInfo() {
-        currentExerciseIndex = Math.min(selectedExercisesList.getItems().size() - 1, currentExerciseIndex);
-        System.out.println(currentExerciseIndex);
+        // DEL
+        System.out.println("Updating exercise info: ex #" + currentExerciseIndex);
 
-        Exercise currentExercise = selectedExercisesList.getItems().get(currentExerciseIndex);
+        currentExerciseIndex = Math.min(sessionWorkoutsList.getItems().size() - 1, currentExerciseIndex);
+
+        Exercise currentExercise = sessionWorkoutsList.getItems().get(currentExerciseIndex).getExercise();
         Workout lastWorkout = dao.findLastWorkout(currentExercise);
-        Workout currentWorkout = dao.getSessionWorkouts().get(currentExerciseIndex);
+        Workout currentWorkout = sessionWorkoutsList.getItems().get(currentExerciseIndex);
+        int[] lastReps = null;
 
         exerciseName.setText(currentExercise.getName());
 
@@ -184,6 +203,7 @@ public class WorkoutTab implements Initializable {
             repetitionsLabel.setText(lastWorkout.getRepetitionsString(" - "));
             durationLabel.setText(dao.averageDurationString(currentExercise));
             commentTextArea.setPromptText(lastWorkout.getComment());
+            lastReps = lastWorkout.getRepetitions();
         } else {
             weightLabel.setText("NaN");
             weightTextField.setText("");
@@ -192,8 +212,9 @@ public class WorkoutTab implements Initializable {
             commentTextArea.setPromptText(null);
         }
 
-        TextField[] reps = new TextField[]{repsTextField1, repsTextField2, repsTextField3, repsTextField4, repsTextField5};
+
         int[] currentReps = currentWorkout.getRepetitions();
+
 
         for (int i = 0; i < reps.length; i++) {
             if (currentReps != null && i < currentReps.length) {
@@ -201,8 +222,15 @@ public class WorkoutTab implements Initializable {
             } else {
                 reps[i].setText("");
             }
+
+            if (lastReps != null && i < lastReps.length) {
+                reps[i].setPromptText(String.valueOf(lastReps[i]));
+            } else {
+                reps[i].setPromptText("");
+            }
         }
         updateRepetitionBox();
+
 
         if (currentWorkout.getWeight() != 0){
             weightTextField.setText(String.valueOf(currentWorkout.getWeight()));
@@ -222,11 +250,8 @@ public class WorkoutTab implements Initializable {
         exerciseImage.setPreserveRatio(true);
         exerciseImage.setFitWidth(360);
 
-        if (selectedExercisesList.getItems().size() > currentExerciseIndex + 1){
-            nextExerciseImage.setImage(selectedExercisesList.getItems().get(currentExerciseIndex + 1).getImage());
-        } else {
-            nextExerciseImage.setImage(null);
-        }
+        updateDumbellImage();
+        updateRepetitionBoxFocus();
     }
 
 
@@ -237,8 +262,33 @@ public class WorkoutTab implements Initializable {
         repsTextField5.setVisible(!repsTextField4.getText().isEmpty());
     }
 
+    private void updateRepetitionBoxFocus() {
+        for (TextField rep : reps) {
+            if (rep.isVisible()) {
+                rep.requestFocus();
+            }
+        }
+    }
 
-    private void startSession() {
+    private void updateDumbellImage() {
+        try {
+            if (!weightTextField.getText().isBlank()) {
+                float weight = Float.parseFloat(weightTextField.getText());
+                dumbellImage.setImage(getDumbellImageByWeight(weight));
+                sessionWorkoutsList.getItems().get(currentExerciseIndex).setWeight(weight);
+                cellFactoriesWithImages(dao.getSessionWorkouts(), sessionWorkoutsList);
+            } else {
+                dumbellImage.setImage(null);
+            }
+        } catch (NumberFormatException e) {
+            dumbellImage.setImage(null);
+        }
+    }
+
+
+    private void startSession() throws IOException {
+        showStartAlert();
+
         newSession = new Session(dao.getSessions().size() + 1, LocalDateTime.now());
 
         startTimeLabel.setText(newSession.getDateTime().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
@@ -282,20 +332,22 @@ public class WorkoutTab implements Initializable {
             return;
         }
 
-        saveCurrentWorkout();
+        if (!saveCurrentWorkout()){
+            return;
+        }
 
-        if (!running) {
+        if (!running){
             updateExerciseInfo();
         }
 
         running = !running;
         pauseButton.setText(running ? "Pause" : "Continue");
-        exerciseImage.setImage(running ? selectedExercisesList.getItems().get(currentExerciseIndex).getImage() : new Image("file:src/maain/resources/org/example/tp/pics/pause.png"));
+        exerciseImage.setImage(running ? sessionWorkoutsList.getItems().get(currentExerciseIndex).getExercise().getImage() : new Image("file:src/main/resources/org/example/tp/pics/pause.png"));
     }
 
 
     public void nextExercise() {
-        if (currentExerciseIndex < selectedExercisesList.getItems().size() - 1){
+        if (currentExerciseIndex < sessionWorkoutsList.getItems().size() - 1){
             if (!saveCurrentWorkout()){
                 return;
             }
@@ -319,15 +371,23 @@ public class WorkoutTab implements Initializable {
 
 
     private void updateButtons() {
-        nextButton.setDisable(currentExerciseIndex >= selectedExercisesList.getItems().size() - 1);
+        nextButton.setDisable(currentExerciseIndex >= sessionWorkoutsList.getItems().size() - 1);
         previousButton.setDisable(currentExerciseIndex <= 0);
     }
 
 
-    private boolean saveCurrentWorkout() {
-        Workout workout = dao.getSessionWorkouts().get(currentExerciseIndex);
-        TextField[] reps = new TextField[]{repsTextField1, repsTextField2, repsTextField3, repsTextField4, repsTextField5};
+    public boolean saveCurrentWorkout() {
+        // DEL
+        System.out.println("Saving ex #" + currentExerciseIndex);
+        System.out.println("All workouts: " + Arrays.toString(dao.getSessionWorkouts().toArray()));
+
         boolean saved = true;
+
+        if (dao.getSessionWorkouts().isEmpty()){
+            return saved;
+        }
+
+        Workout workout = dao.getSessionWorkouts().get(currentExerciseIndex);
 
         try {
             if (!weightTextField.getText().isBlank()) {
@@ -357,10 +417,14 @@ public class WorkoutTab implements Initializable {
 
     private void saveSession() throws IOException {
         running = true;
-        saveCurrentWorkout();
+        if (!saveCurrentWorkout()){
+            return;
+        }
         newSession.setDuration((System.currentTimeMillis() - startTimeMillis) / 1000);
         running = false;
-        exerciseImage.setImage(new Image("file:src/maain/resources/org/example/tp/pics/pause.png"));
+        exerciseImage.setImage(new Image("file:src/main/resources/org/example/tp/pics/pause.png"));
+
+        showFinishAlert();
 
         if (!showSummaryDialog()){
             pauseWorkout();
@@ -409,4 +473,28 @@ public class WorkoutTab implements Initializable {
         return !(newSession.getName() == null);
     }
 
+    private void showStartAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Start");
+        alert.setHeaderText("Starting the session!");
+        alert.setContentText("Did you start the session on your watch?\nDid you took the supplements?");
+        alert.showAndWait();
+    }
+
+    private void showFinishAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Finish");
+        alert.setHeaderText("Finishing the session!");
+        alert.setContentText("Did you stop the session on your watch?");
+        alert.showAndWait();
+    }
+
+    public void autofill() {
+        for (TextField textField : reps) {
+            if (textField.isFocused() && textField.getText().isEmpty()) {
+                textField.setText(textField.getPromptText());
+                updateRepetitionBox();
+            }
+        }
+    }
 }

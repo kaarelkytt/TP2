@@ -1,11 +1,14 @@
 package org.example.tp;
 
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import org.example.tp.controllers.MenuBar;
 import org.example.tp.dao.DAO;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -18,6 +21,7 @@ import org.example.tp.controllers.WorkoutTab;
 import java.io.IOException;
 
 import static org.example.tp.logic.Tab.loadControls;
+
 
 public class MainApplication extends Application {
 
@@ -34,11 +38,19 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Tab workoutTab = new Tab();
-        workoutTab.setText("Workout");
+        Tab workoutTab = new Tab("Workout");
         workoutTab.setClosable(false);
         WorkoutTab workoutTabContoller = new WorkoutTab(dao);
         workoutTab.setContent(loadControls("/org/example/tp/ui/WorkoutTab.fxml", workoutTabContoller));
+
+        workoutTab.setOnSelectionChanged (e ->{
+            if (!workoutTab.isSelected()){
+                if (!workoutTabContoller.saveCurrentWorkout()){
+                    // TODO et tabe ei vahetataks
+                    e.consume();
+                }
+            }
+        });
 
         Tab exerciseTab = new Tab();
         exerciseTab.setText("Exercise");
@@ -47,10 +59,17 @@ public class MainApplication extends Application {
         exerciseTab.setContent(loadControls("/org/example/tp/ui/ExerciseTab.fxml", exerciseTabController));
 
         TabPane tabPane = new TabPane(exerciseTab, workoutTab);
-        tabPane.setOnMouseClicked(event -> {
-            workoutTabContoller.updateTab();
-            exerciseTabController.updateTab();
-        });
+
+        tabPane.getSelectionModel().selectedItemProperty().addListener(
+                (ov, oldTab, newTab) -> {
+                    // DEL
+                    System.out.println("Tab Selection changed");
+
+                    workoutTabContoller.updateTab();
+                    exerciseTabController.updateTab();
+                }
+        );
+
         tabPane.setId("mainTabPane");
 
         Group root = new Group();
@@ -58,30 +77,34 @@ public class MainApplication extends Application {
         //scene.getStylesheets().add(getClass().getResource("Theme.css").toExternalForm());
 
         scene.addEventFilter(KeyEvent.KEY_PRESSED, ke -> {
-            if (ke.getCode() == KeyCode.LEFT && scene.getFocusOwner().getId().equals("mainTabPane") && workoutTab.isSelected()) {
+            if (ke.getCode() == KeyCode.PAGE_UP && workoutTab.isSelected()) {
                 workoutTabContoller.previousExercise();
                 ke.consume();
-            } else if (ke.getCode() == KeyCode.RIGHT && scene.getFocusOwner().getId().equals("mainTabPane") && workoutTab.isSelected()) {
+            } else if (ke.getCode() == KeyCode.PAGE_DOWN && workoutTab.isSelected()) {
                 workoutTabContoller.nextExercise();
                 ke.consume();
-            } else if (ke.getCode() == KeyCode.SPACE && scene.getFocusOwner().getId().equals("mainTabPane") && workoutTab.isSelected()) {
+            } else if (ke.getCode() == KeyCode.END && workoutTab.isSelected()) {
                 workoutTabContoller.pauseWorkout();
                 ke.consume();
+            } else if (ke.getCode() == KeyCode.TAB && workoutTab.isSelected()) {
+                workoutTabContoller.autofill();
             }
         });
 
         BorderPane borderPane = new BorderPane();
         borderPane.prefHeightProperty().bind(scene.heightProperty());
         borderPane.prefWidthProperty().bind(scene.widthProperty());
-        borderPane.setCenter(tabPane);
         root.getChildren().add(borderPane);
+
+        borderPane.setCenter(tabPane);
+        borderPane.setTop(loadControls("/org/example/tp/ui/MenuBar.fxml", new MenuBar(dao)));
 
         primaryStage.setTitle("Workout");
         primaryStage.setScene(scene);
         primaryStage.setResizable(true);
         primaryStage.setMinWidth(1150);
-        primaryStage.setMinHeight(665);
-        primaryStage.getIcons().add(new Image("file:src\\main\\resources\\org\\example\\tp\\pics\\test.png"));
+        primaryStage.setMinHeight(690);
+        primaryStage.getIcons().add(new Image("file:src\\main\\resources\\org\\example\\tp\\pics\\icon.png"));
 
         primaryStage.show();
     }

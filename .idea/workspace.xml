@@ -5,16 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2acb9b2-2e32-4dd6-b916-0c962eb53816" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/MenuBar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/ui/MenuBar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/ExerciseTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/ExerciseTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/WorkoutTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/WorkoutTab.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/dao/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/dao/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/dataobjects/Exercise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/dataobjects/Exercise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/dataobjects/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/dataobjects/Session.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/dataobjects/Workout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/dataobjects/Workout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/FromFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/FromFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/data/exercises.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/data/exercises.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/Tab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/Tab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/1/1 - biceps2.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/1/2 - chest2.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/1/3 - triceps4.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/1/4 - biceps4.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/1/5 - chest1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/1/6 - triceps3.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/2/1_abs7.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/2/2_back1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/2/3_shoulder6.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/2/4_abs3.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/2/5_back3.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/2/6_shoulder5.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/2/7_abs2.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/2/8_back4.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/blank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/ui/ExerciseTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/ui/ExerciseTab.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/ui/WorkoutTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/ui/WorkoutTab.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,8 +63,7 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="TP2" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="application" type="c8890929:TasksNode$1" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
             <select />
@@ -61,6 +76,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -80,28 +96,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.TP2 [dependencies].executor": "Run",
-    "Gradle.TP2 [run].executor": "Run",
-    "Gradle.TP2 [startScripts].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TP2 [dependencies].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TP2 [run].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TP2 [startScripts].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Kaarel/TP.mv.db&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;h2&quot;
+    ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Kaarel\Git\TP2\src\main\resources\" />
@@ -135,7 +157,7 @@
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--stacktrace --warning-mode all" />
+        <option name="scriptParameters" value="--stacktrace" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -205,6 +227,8 @@
       <updated>1730734519139</updated>
       <workItem from="1730734520210" duration="5068000" />
       <workItem from="1730740259022" duration="16894000" />
+      <workItem from="1730758793713" duration="14545000" />
+      <workItem from="1730800394196" duration="34276000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />

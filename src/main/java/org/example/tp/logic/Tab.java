@@ -1,6 +1,14 @@
 package org.example.tp.logic;
 
+import javafx.scene.control.CustomMenuItem;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import org.example.tp.MainApplication;
+import org.example.tp.dao.DAO;
 import org.example.tp.dataobjects.Exercise;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +17,9 @@ import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
+import org.example.tp.dataobjects.Workout;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -61,6 +71,38 @@ public class Tab {
         });
     }
 
+    public static void cellFactoriesWithImages(ObservableList<Workout> workouts, ListView<Workout> workoutList) {
+        workoutList.setItems(workouts);
+
+
+        workoutList.setCellFactory(null);
+        workoutList.setCellFactory(param -> new ListCell<>() {
+
+            @Override
+            protected void updateItem(Workout workout, boolean empty) {
+                super.updateItem(workout, empty);
+
+                if (empty || workout == null) {
+                    setGraphic(null);
+                } else {
+                    ImageView exerciseImage = new ImageView(workout.getExercise().getImage());
+                    exerciseImage.setPreserveRatio(true);
+                    exerciseImage.setFitHeight(100);
+
+                    ImageView dumbellImage = new ImageView();
+                    dumbellImage.setImage(workout.getWeight() != 0 ? getDumbellImageByWeight(workout.getWeight()) : null);
+
+                    Label name = new Label(workout.getExercise().getName());
+
+                    VBox vBox = new VBox(name, dumbellImage);
+
+                    HBox hBox = new HBox(exerciseImage, vBox);
+                    setGraphic(hBox);
+                }
+            }
+        });
+    }
+
     public static Node loadControls(String fxml, Initializable controller) throws IOException {
         URL resource = MainApplication.class.getResource(fxml);
         if (resource == null)
@@ -91,5 +133,17 @@ public class Tab {
         }
 
         return time.toString();
+    }
+
+    public static Image getDumbellImageByWeight(float weight) {
+        String dumbellSize = "empty";
+
+        String weightString = String.valueOf(weight);
+        weightString = weightString.replace(".", "_");
+        if (new File("src\\main\\resources\\org\\example\\tp\\pics\\dumbell\\icon\\dumbell_" + weightString + ".png").isFile()){
+            dumbellSize = "dumbell_" + weightString;
+        }
+
+        return new Image("file:src\\main\\resources\\org\\example\\tp\\pics\\dumbell\\icon\\" + dumbellSize + ".png");
     }
 }

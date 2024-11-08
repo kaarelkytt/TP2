@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.geometry.*?>
@@ -113,7 +114,7 @@
                                         <GridPane hgap="10.0" vgap="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <columnConstraints>
                                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="94.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.0" minWidth="10.0" prefWidth="196.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.0" minWidth="10.0" prefWidth="175.0" />
                                             </columnConstraints>
                                             <rowConstraints>
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -143,11 +144,16 @@
                                                         <Font size="14.0" />
                                                     </font>
                                                 </Label>
-                                                <Label fx:id="weightLabel" GridPane.columnIndex="1">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
+                                    <HBox spacing="20.0" GridPane.columnIndex="1">
+                                       <children>
+                                                      <Label fx:id="weightLabel" GridPane.columnIndex="1">
+                                                          <font>
+                                                              <Font size="14.0" />
+                                                          </font>
+                                                      </Label>
+                                          <ImageView fx:id="dumbellImage" fitHeight="24.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </HBox>
                                                 <Label fx:id="repetitionsLabel" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                     <font>
                                                         <Font size="14.0" />

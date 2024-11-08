@@ -1,5 +1,6 @@
 package org.example.tp.controllers;
 
+import javafx.scene.image.Image;
 import org.example.tp.dao.DAO;
 import org.example.tp.dataobjects.Exercise;
 import org.example.tp.dataobjects.Workout;
@@ -20,28 +21,21 @@ import java.time.LocalDate;
 import java.util.*;
 
 import static org.example.tp.dataobjects.Exercise.Category.*;
-import static org.example.tp.logic.Tab.cellFactories;
-import static org.example.tp.logic.Tab.cellFactoriesWithCategory;
-
-// TODO dumbell calculator / weights dropdown menu showing all weights available
-// TODO pics of dumbell with highlighted weights
+import static org.example.tp.logic.Tab.*;
 
 // TODO reorder with drag and drop
 // TODO auto sort (less weight change, shuffle types, priority - preffered ex. in the beginning)
 
 // TODO history calendar view and tabular view
-// TODO history - redo old workout
+// TODO history - redo old workout, dropdown menu above current workout to autofill current workout
 
-// TODO all workout exercises displayed
 // TODO show time and duration someway better (progress bar and times on the bar and at the end)
+// TODO save time with millis everywhere, just show in seconds
 
-// TODO autofill repetitions with TAB
-// TODO remainders (supplements at the beginning and stop exercise on the watch at the end)
-
+// TODO add logging
 
 // later
 // TODO window size change
-// TODO better logo
 // TODO review the weight-rep relation graph
 // TODO more exercises
 
@@ -53,6 +47,12 @@ DONE
 * refresh workout tab each time (when chancing exercises workout doesn't update immidiately)
 * avg duration instead of last time duration
 * current workout delete with double click
+* better logo
+* autofill repetitions with TAB
+* remainders (supplements at the beginning and stop exercise on the watch at the end)
+* dumbell calculator / pics of dumbell with highlighted weights
+* focus always on repetition box when changing workouts (last visible)
+* all workout exercises displayed
 
  */
 
@@ -105,6 +105,8 @@ public class ExerciseTab implements Initializable {
     private ListView<Exercise> selectedExercisesList;
     @FXML
     private ImageView exerciseImage;
+    @FXML
+    private ImageView dumbellImage;
     @FXML
     private Button addToWorkoutButton;
     @FXML
@@ -291,7 +293,11 @@ public class ExerciseTab implements Initializable {
         ObservableList<Workout> sessionWorkouts = dao.getSessionWorkouts();
         if (!sessionExercises.contains(currentExercise)) {
             sessionExercises.add(currentExercise);
-            sessionWorkouts.add(new Workout(currentExercise, LocalDate.now()));
+
+            Workout lastWorkout = dao.findLastWorkout(currentExercise);
+            float weight = lastWorkout != null ? lastWorkout.getWeight() : 0;
+            sessionWorkouts.add(new Workout(currentExercise, LocalDate.now(), weight));
+
             dao.setSessionExercises(sessionExercises);
             dao.setSessionWorkouts(sessionWorkouts);
         }
@@ -338,12 +344,15 @@ public class ExerciseTab implements Initializable {
                 notesLabel.setText("");
             }
 
+            dumbellImage.setImage(getDumbellImageByWeight(lastWorkout.getWeight()));
+
         } else {
             weightLabel.setText("NaN");
             repetitionsLabel.setText("NaN");
             durationLabel.setText("NaN");
             notesHeaderLable.setText("");
             notesLabel.setText("");
+            dumbellImage.setImage(null);
         }
 
         exerciseImage.setImage(currentExercise.getImage());

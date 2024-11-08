@@ -48,7 +48,7 @@ public class DAO {
     }
 
     public List<Session> getSessions() {
-        TypedQuery<Session> query = em.createQuery("SELECT s FROM Session s", Session.class);
+        TypedQuery<Session> query = em.createQuery("SELECT s FROM Session s ORDER BY s.dateTime DESC", Session.class);
         return query.getResultList();
     }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
@@ -10,11 +11,11 @@
     <children>
         <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
-                <AnchorPane maxWidth="200.0" minWidth="200.0" BorderPane.alignment="CENTER">
+                <AnchorPane maxWidth="300.0" minWidth="300.0" BorderPane.alignment="CENTER">
                <children>
-                      <AnchorPane maxWidth="200.0" minWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <AnchorPane maxWidth="300.0" minWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <children>
-                              <Label text="Current Workout" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="Current Workout" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                   <font>
                                       <Font size="18.0" />
                                   </font>
@@ -22,7 +23,7 @@
                                       <Insets left="10.0" top="10.0" />
                                   </padding>
                               </Label>
-                              <ListView fx:id="selectedExercisesList" focusTraversable="false" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+                              <ListView fx:id="sessionWorkoutsList" fixedCellSize="100.0" focusTraversable="false" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
                           </children>
                       </AnchorPane>
                </children>
@@ -91,11 +92,6 @@
                                                         <Font size="14.0" />
                                                     </font>
                                                 </Label>
-                                                <Label fx:id="weightLabel" GridPane.columnIndex="2">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </Label>
                                                 <Label fx:id="repetitionsLabel" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                                     <font>
                                                         <Font size="14.0" />
@@ -106,24 +102,34 @@
                                                         <Font size="14.0" />
                                                     </font>
                                                 </Label>
-                                    <TextField fx:id="weightTextField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <TextField fx:id="weightTextField" onKeyTyped="#weightUpdate" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                     <Label text="last" GridPane.columnIndex="1" />
                                     <Label text="now" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Label text="last" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Label text="last" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label text="avg" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                     <Label text="now" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <Label text="now" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <HBox onKeyReleased="#repetitionBoxUpdate" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                    <HBox alignment="CENTER_LEFT" onKeyReleased="#repetitionBoxUpdate" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                        <children>
-                                          <TextField fx:id="repsTextField1" />
-                                          <TextField fx:id="repsTextField2" visible="false" />
-                                          <TextField fx:id="repsTextField3" visible="false" />
-                                          <TextField fx:id="repsTextField4" visible="false" />
-                                          <TextField fx:id="repsTextField5" visible="false" />
+                                          <TextField fx:id="repsTextField1" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" />
+                                          <TextField fx:id="repsTextField2" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
+                                          <TextField fx:id="repsTextField3" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
+                                          <TextField fx:id="repsTextField4" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
+                                          <TextField fx:id="repsTextField5" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
                                        </children>
                                     </HBox>
                                     <TextArea fx:id="commentTextArea" prefHeight="200.0" prefWidth="200.0" promptText="Add comment" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                                     <Label fx:id="currentExerciseDurationLabel" text="00:00:00" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="2">
+                                       <children>
+                                                      <Label fx:id="weightLabel">
+                                                          <font>
+                                                              <Font size="14.0" />
+                                                          </font>
+                                                      </Label>
+                                          <ImageView fx:id="dumbellImage" fitHeight="30.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </HBox>
                                             </children>
                                             <padding>
                                                 <Insets left="10.0" top="10.0" />

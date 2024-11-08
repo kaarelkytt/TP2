@@ -28,9 +28,10 @@ public class Workout {
         this.date = date;
     }
 
-    public Workout(Exercise exercise, LocalDate date) {
+    public Workout(Exercise exercise, LocalDate date, float weight) {
         this.exercise = exercise;
         this.date = date;
+        this.weight = weight;
     }
 
     public Workout() {
