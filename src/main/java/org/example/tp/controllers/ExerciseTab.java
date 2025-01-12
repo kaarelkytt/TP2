@@ -1,6 +1,7 @@
 package org.example.tp.controllers;
 
-import javafx.scene.image.Image;
+import javafx.scene.Node;
+import javafx.util.Duration;
 import org.example.tp.dao.DAO;
 import org.example.tp.dataobjects.Exercise;
 import org.example.tp.dataobjects.Workout;
@@ -27,8 +28,6 @@ import static org.example.tp.logic.Tab.*;
 // TODO auto sort (less weight change, shuffle types, priority - preffered ex. in the beginning)
 
 // TODO order exercises by how frequently they have been on workouts
-// TODO repetitions graph show change better
-// TODO when hoover on graph then show exact values
 // TODO history calendar view and tabular view
 // TODO history - redo old workout, dropdown menu above current workout to autofill current workout
 
@@ -48,7 +47,6 @@ import static org.example.tp.logic.Tab.*;
 // TODO review the weight-rep relation graph
 // TODO more exercises
 
-// TODO dumbell images transparent background
 // TODO files are for import and export
 
 /*
@@ -65,8 +63,10 @@ DONE
 * all workout exercises displayed
 
 * 22.5 dumbell image
+* dumbell images transparent background
 * fill repetition boxes with previous value (first one with info from last workout)
-
+* repetitions graph show change better
+* when hoover on graph then show exact values
  */
 
 
@@ -75,7 +75,6 @@ public class ExerciseTab implements Initializable {
 
     private final XYChart.Series<String, Number> weightSeries = new XYChart.Series<>();
     private final XYChart.Series<String, Number> repSeries = new XYChart.Series<>();
-    private final XYChart.Series<String, Number> weightRepSeries = new XYChart.Series<>();
 
     private Exercise currentExercise;
 
@@ -229,26 +228,19 @@ public class ExerciseTab implements Initializable {
     private void loadGraphData() {
         weightSeries.setName("Weights");
         repSeries.setName("Repetitions");
-        weightRepSeries.setName("Weight repetition ratio");
-
-        lineChart.getData().add(weightSeries);
-        lineChart.getData().add(repSeries);
-        lineChart.getData().add(weightRepSeries);
-
         lineChart.setAnimated(false);
     }
 
     private void updateGraph(Exercise exercise) {
-        List<Workout> workouts = dao.findAllWorkouts(exercise);
-
         if (!lineChart.getData().isEmpty()) {
             clearGraph();
         }
 
+        List<Workout> workouts = dao.findAllWorkouts(exercise);
+
         if (!workouts.isEmpty()) {
             lineChart.getData().add(weightSeries);
             lineChart.getData().add(repSeries);
-            lineChart.getData().add(weightRepSeries);
 
             workouts = workouts.subList(0, Math.min(100, workouts.size()));
             Collections.reverse(workouts);
@@ -256,10 +248,22 @@ public class ExerciseTab implements Initializable {
             for (Workout workout : workouts) {
                 float weight = workout.getWeight();
                 double reps = Arrays.stream(workout.getRepetitions()).average().orElse(0);
+                String date = workout.getDateString();
 
-                weightSeries.getData().add(new Data<>(workout.getDateString(), weight));
-                repSeries.getData().add(new Data<>(workout.getDateString(), reps));
-                weightRepSeries.getData().add(new Data<>(workout.getDateString(), reps * weight / 12.5));
+                Tooltip tooltip = new Tooltip(date + "\n  Reps: " + reps);
+                tooltip.setShowDelay(Duration.millis(0));
+
+                if (weight != 0){
+                    tooltip.setText(tooltip.getText() + "\n  Weight: " + weight);
+
+                    Data<String, Number> weight_data = new Data<>(date, weight);
+                    weightSeries.getData().add(weight_data);
+                    Tooltip.install(weight_data.getNode(), tooltip);
+                }
+
+                Data<String, Number> reps_data = new Data<>(date, reps);
+                repSeries.getData().add(reps_data);
+                Tooltip.install(reps_data.getNode(), tooltip);
             }
         }
     }
@@ -269,7 +273,6 @@ public class ExerciseTab implements Initializable {
 
         weightSeries.getData().clear();
         repSeries.getData().clear();
-        weightRepSeries.getData().clear();
     }
 
     public void updateTab() {

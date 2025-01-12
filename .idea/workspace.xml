@@ -5,26 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2acb9b2-2e32-4dd6-b916-0c962eb53816" name="Changes" comment="new dumbell image and repetition box update method change">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/full/dumbell_10_0_tp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/full/dumbell_12_5_tp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/full/dumbell_15_0_tp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/full/dumbell_17_5_tp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/full/dumbell_20_0_tp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/full/dumbell_22_5_tp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/full/dumbell_5_0_tp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/full/dumbell_7_5_tp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/full/empty_tp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/icon/dumbell_10_0_tp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/icon/dumbell_12_5_tp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/icon/dumbell_15_0_tp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/icon/dumbell_17_5_tp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/icon/dumbell_20_0_tp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/icon/dumbell_22_5_tp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/icon/dumbell_5_0_tp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/icon/dumbell_7_5_tp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/icon/empty_tp.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/Tab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/Tab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/ExerciseTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/ExerciseTab.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
