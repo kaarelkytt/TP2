@@ -140,10 +140,10 @@ public class Tab {
 
         String weightString = String.valueOf(weight);
         weightString = weightString.replace(".", "_");
-        if (new File("src\\main\\resources\\org\\example\\tp\\pics\\dumbell\\icon\\dumbell_" + weightString + ".png").isFile()){
+        if (new File("src\\main\\resources\\org\\example\\tp\\pics\\dumbell\\icon\\dumbell_" + weightString + "_tp.png").isFile()){
             dumbellSize = "dumbell_" + weightString;
         }
 
-        return new Image("file:src\\main\\resources\\org\\example\\tp\\pics\\dumbell\\icon\\" + dumbellSize + ".png");
+        return new Image("file:src\\main\\resources\\org\\example\\tp\\pics\\dumbell\\icon\\" + dumbellSize + "_tp.png");
     }
 }

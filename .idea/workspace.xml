@@ -4,11 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2acb9b2-2e32-4dd6-b916-0c962eb53816" name="Changes" comment="Initial commit">
+    <list default="true" id="d2acb9b2-2e32-4dd6-b916-0c962eb53816" name="Changes" comment="new dumbell image and repetition box update method change">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/full/dumbell_10_0_tp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/full/dumbell_12_5_tp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/full/dumbell_15_0_tp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/full/dumbell_17_5_tp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/full/dumbell_20_0_tp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/full/dumbell_22_5_tp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/full/dumbell_5_0_tp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/full/dumbell_7_5_tp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/full/empty_tp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/icon/dumbell_10_0_tp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/icon/dumbell_12_5_tp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/icon/dumbell_15_0_tp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/icon/dumbell_17_5_tp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/icon/dumbell_20_0_tp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/icon/dumbell_22_5_tp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/icon/dumbell_5_0_tp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/icon/dumbell_7_5_tp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/dumbell/icon/empty_tp.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/ExerciseTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/ExerciseTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/WorkoutTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/WorkoutTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/ui/WorkoutTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/ui/WorkoutTab.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/Tab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/Tab.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +79,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -211,7 +227,7 @@
       <workItem from="1732132862514" duration="10058000" />
       <workItem from="1734181651654" duration="52000" />
       <workItem from="1734340488161" duration="180000" />
-      <workItem from="1734460419279" duration="11043000" />
+      <workItem from="1734460419279" duration="13421000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -229,7 +245,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730740540858</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="new dumbell image and repetition box update method change">
+      <option name="closed" value="true" />
+      <created>1736707897456</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1736707897456</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,6 +272,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="new dumbell image and repetition box update method change" />
+    <option name="LAST_COMMIT_MESSAGE" value="new dumbell image and repetition box update method change" />
   </component>
 </project>
