@@ -111,10 +111,10 @@
                                     <Label text="now" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                     <HBox alignment="CENTER_LEFT" onKeyReleased="#repetitionBoxUpdate" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                        <children>
-                                          <TextField fx:id="repsTextField1" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" />
-                                          <TextField fx:id="repsTextField2" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
-                                          <TextField fx:id="repsTextField3" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
-                                          <TextField fx:id="repsTextField4" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
+                                          <TextField fx:id="repsTextField1" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" />
+                                          <TextField fx:id="repsTextField2" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
+                                          <TextField fx:id="repsTextField3" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
+                                          <TextField fx:id="repsTextField4" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
                                           <TextField fx:id="repsTextField5" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
                                        </children>
                                     </HBox>

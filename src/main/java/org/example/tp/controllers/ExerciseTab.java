@@ -26,6 +26,9 @@ import static org.example.tp.logic.Tab.*;
 // TODO reorder with drag and drop
 // TODO auto sort (less weight change, shuffle types, priority - preffered ex. in the beginning)
 
+// TODO order exercises by how frequently they have been on workouts
+// TODO repetitions graph show change better
+// TODO when hoover on graph then show exact values
 // TODO history calendar view and tabular view
 // TODO history - redo old workout, dropdown menu above current workout to autofill current workout
 
@@ -33,12 +36,19 @@ import static org.example.tp.logic.Tab.*;
 // TODO save time with millis everywhere, just show in seconds
 
 // TODO add logging
+// TODO menubar, add option to turn remainders off and on (and change text)
+
+// TODO combine exercises and workout tab
+
 
 // later
+// TODO menubar, add toggle to change rep box update method (previous values from this or last exercise)
+// TODO menubar, add a button to add exercises to database
 // TODO window size change
 // TODO review the weight-rep relation graph
 // TODO more exercises
 
+// TODO dumbell images transparent background
 // TODO files are for import and export
 
 /*
@@ -53,6 +63,9 @@ DONE
 * dumbell calculator / pics of dumbell with highlighted weights
 * focus always on repetition box when changing workouts (last visible)
 * all workout exercises displayed
+
+* 22.5 dumbell image
+* fill repetition boxes with previous value (first one with info from last workout)
 
  */
 

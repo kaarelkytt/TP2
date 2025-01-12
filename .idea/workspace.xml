@@ -5,31 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2acb9b2-2e32-4dd6-b916-0c962eb53816" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/MenuBar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/ui/MenuBar.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/MainApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/ExerciseTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/ExerciseTab.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/WorkoutTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/WorkoutTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/dao/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/dao/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/Tab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/Tab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/1/1 - biceps2.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/1/2 - chest2.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/1/3 - triceps4.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/1/4 - biceps4.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/1/5 - chest1.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/1/6 - triceps3.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/2/1_abs7.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/2/2_back1.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/2/3_shoulder6.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/2/4_abs3.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/2/5_back3.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/2/6_shoulder5.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/2/7_abs2.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/2/8_back4.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/blank.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/pics/test.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/ui/ExerciseTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/ui/ExerciseTab.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/ui/WorkoutTab.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/ui/WorkoutTab.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -229,6 +207,11 @@
       <workItem from="1730740259022" duration="16894000" />
       <workItem from="1730758793713" duration="14545000" />
       <workItem from="1730800394196" duration="34276000" />
+      <workItem from="1731267331606" duration="7419000" />
+      <workItem from="1732132862514" duration="10058000" />
+      <workItem from="1734181651654" duration="52000" />
+      <workItem from="1734340488161" duration="180000" />
+      <workItem from="1734460419279" duration="11043000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />

@@ -112,6 +112,10 @@ public class WorkoutTab implements Initializable {
     public void previousButtonClicked() {
         previousExercise();
     }
+    @FXML
+    public void repetitionBoxKeyTyped() {
+        updateRepetitionBoxPromptText();
+    }
 
     @FXML
     public void repetitionBoxUpdate() {
@@ -260,6 +264,13 @@ public class WorkoutTab implements Initializable {
         repsTextField3.setVisible(!repsTextField2.getText().isEmpty());
         repsTextField4.setVisible(!repsTextField3.getText().isEmpty());
         repsTextField5.setVisible(!repsTextField4.getText().isEmpty());
+    }
+
+    private void updateRepetitionBoxPromptText() {
+        repsTextField2.setPromptText(repsTextField1.getText());
+        repsTextField3.setPromptText(repsTextField2.getText());
+        repsTextField4.setPromptText(repsTextField3.getText());
+        repsTextField5.setPromptText(repsTextField4.getText());
     }
 
     private void updateRepetitionBoxFocus() {
