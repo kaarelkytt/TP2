@@ -6,7 +6,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar maxHeight="25.0" minHeight="25.0" prefHeight="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -21,6 +20,9 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
+                  <CheckMenuItem fx:id="startRemainderCheckButton" mnemonicParsing="false" onAction="#startRemainderCheckButtonClicked" text="Remainder at the beginnig" />
+                  <CheckMenuItem fx:id="endRemainderCheckButton" mnemonicParsing="false" onAction="#endRemainderCheckButtonClicked" text="Remainder at the end" />
+                  <MenuItem fx:id="editRemaindersMenuItem" mnemonicParsing="false" onAction="#editRemaindersMenuItemClicked" text="Edit remainders" />
               <MenuItem mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>

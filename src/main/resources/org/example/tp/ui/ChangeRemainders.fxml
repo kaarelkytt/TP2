@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox maxWidth="400.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <GridPane maxWidth="370.0" vgap="10.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="120.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="306.0" minWidth="10.0" prefWidth="306.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints prefHeight="70.0" vgrow="SOMETIMES" />
+                <RowConstraints prefHeight="70.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Start remainder" />
+                  <Label text="End remainder" GridPane.rowIndex="1" />
+                  <TextArea fx:id="endRemainderTextArea" prefWidth="291.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextArea fx:id="startRemainderTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+               </children>
+            </GridPane>
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+      </VBox>
+      <Button mnemonicParsing="false" onMouseClicked="#saveButtonClicked" prefWidth="70.0" text="Save" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="315.0" />
+      <Button cancelButton="true" layoutX="251.0" layoutY="465.0" mnemonicParsing="false" onMouseClicked="#cancelButtonClicked" prefWidth="70.0" text="Cancel" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="230.0" />
+   </children>
+</AnchorPane>

@@ -47,6 +47,6 @@
          </padding>
       </VBox>
       <Button mnemonicParsing="false" onMouseClicked="#saveButtonClicked" prefWidth="70.0" text="Save" AnchorPane.leftAnchor="315.0" AnchorPane.topAnchor="465.0" />
-      <Button cancelButton="true" layoutX="251.0" layoutY="465.0" mnemonicParsing="false" onMouseClicked="#cancelButtonCLicked" prefWidth="70.0" text="Cancel" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="465.0" />
+      <Button cancelButton="true" layoutX="251.0" layoutY="465.0" mnemonicParsing="false" onMouseClicked="#cancelButtonClicked" prefWidth="70.0" text="Cancel" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="465.0" />
    </children>
 </AnchorPane>

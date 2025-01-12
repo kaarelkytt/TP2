@@ -7,7 +7,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -44,7 +43,7 @@ public class SessionSummary implements Initializable {
     @FXML
     public void saveButtonClicked(){save();}
     @FXML
-    public void cancelButtonCLicked(){stage.close();}
+    public void cancelButtonClicked(){stage.close();}
 
 
     public SessionSummary(DAO dao, Session session, Stage stage) {

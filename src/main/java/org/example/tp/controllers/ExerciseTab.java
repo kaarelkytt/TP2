@@ -35,8 +35,6 @@ import static org.example.tp.logic.Tab.*;
 // TODO save time with millis everywhere, just show in seconds
 
 // TODO add logging
-// TODO menubar, add option to turn remainders off and on (and change text)
-
 // TODO combine exercises and workout tab
 
 
@@ -67,6 +65,7 @@ DONE
 * fill repetition boxes with previous value (first one with info from last workout)
 * repetitions graph show change better
 * when hoover on graph then show exact values
+* menubar, add option to turn remainders off and on (and change text)
  */
 
 

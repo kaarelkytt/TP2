@@ -17,18 +17,27 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class DAO {
 
     private final EntityManagerFactory emf;
     private final EntityManager em;
+    private final Properties properties;
 
     private ObservableList<Exercise> sessionExercises = FXCollections.observableArrayList();
     private ObservableList<Workout> sessionWorkouts = FXCollections.observableArrayList();
 
+
+
     public DAO() throws IOException {
         emf = Persistence.createEntityManagerFactory("tp");
         em = emf.createEntityManager();
+
+        try (FileInputStream in = new FileInputStream("src\\main\\resources\\config.properties")) {
+            properties = new Properties();
+            properties.load(in);
+        }
 
         //importData();
     }
@@ -66,6 +75,17 @@ public class DAO {
 
     public void setSessionWorkouts(ObservableList<Workout> sessionWorkouts) {
         this.sessionWorkouts = sessionWorkouts;
+    }
+
+    public String getProperty(String key) {
+        return properties.getProperty(key);
+    }
+
+    public void setProperty(String key, String value) throws IOException {
+        try (FileOutputStream out = new FileOutputStream("src\\main\\resources\\config.properties")){
+            properties.setProperty(key, value);
+            properties.store(out, null);
+        }
     }
 
     public Workout findLastWorkout(Exercise exercise) {

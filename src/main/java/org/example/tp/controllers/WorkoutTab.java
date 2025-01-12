@@ -298,7 +298,9 @@ public class WorkoutTab implements Initializable {
 
 
     private void startSession() throws IOException {
-        showStartAlert();
+        if (dao.getProperty("startRemainder").equals("true")) {
+            showStartAlert();
+        }
 
         newSession = new Session(dao.getSessions().size() + 1, LocalDateTime.now());
 
@@ -435,7 +437,10 @@ public class WorkoutTab implements Initializable {
         running = false;
         exerciseImage.setImage(new Image("file:src/main/resources/org/example/tp/pics/pause.png"));
 
-        showFinishAlert();
+        if (dao.getProperty("endRemainder").equals("true")) {
+            showFinishAlert();
+        }
+
 
         if (!showSummaryDialog()){
             pauseWorkout();
@@ -488,7 +493,7 @@ public class WorkoutTab implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Start");
         alert.setHeaderText("Starting the session!");
-        alert.setContentText("Did you start the session on your watch?\nDid you took the supplements?");
+        alert.setContentText(dao.getProperty("startRemainderText"));
         alert.showAndWait();
     }
 
@@ -496,7 +501,7 @@ public class WorkoutTab implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Finish");
         alert.setHeaderText("Finishing the session!");
-        alert.setContentText("Did you stop the session on your watch?");
+        alert.setContentText(dao.getProperty("endRemainderText"));
         alert.showAndWait();
     }
 
