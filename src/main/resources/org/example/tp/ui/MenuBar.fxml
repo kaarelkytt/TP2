@@ -20,10 +20,9 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-                  <CheckMenuItem fx:id="startRemainderCheckButton" mnemonicParsing="false" onAction="#startRemainderCheckButtonClicked" text="Remainder at the beginnig" />
+                  <CheckMenuItem fx:id="startRemainderCheckButton" mnemonicParsing="false" onAction="#startRemainderCheckButtonClicked" text="Remainder at the beginning" />
                   <CheckMenuItem fx:id="endRemainderCheckButton" mnemonicParsing="false" onAction="#endRemainderCheckButtonClicked" text="Remainder at the end" />
                   <MenuItem fx:id="editRemaindersMenuItem" mnemonicParsing="false" onAction="#editRemaindersMenuItemClicked" text="Edit remainders" />
-              <MenuItem mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">

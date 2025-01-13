@@ -25,9 +25,7 @@ public class DAO {
     private final EntityManager em;
     private final Properties properties;
 
-    private ObservableList<Exercise> sessionExercises = FXCollections.observableArrayList();
     private ObservableList<Workout> sessionWorkouts = FXCollections.observableArrayList();
-
 
 
     public DAO() throws IOException {
@@ -61,16 +59,17 @@ public class DAO {
         return query.getResultList();
     }
 
-    public ObservableList<Exercise> getSessionExercises() {
-        return sessionExercises;
-    }
-
-    public void setSessionExercises(ObservableList<Exercise> sessionExercises) {
-        this.sessionExercises = sessionExercises;
-    }
-
     public ObservableList<Workout> getSessionWorkouts() {
         return sessionWorkouts;
+    }
+
+    public Workout getSessionWorkout(Exercise exercise) {
+        for (Workout workout : getSessionWorkouts()) {
+            if (workout.getExercise() == exercise) {
+                return workout;
+            }
+        }
+        return null;
     }
 
     public void setSessionWorkouts(ObservableList<Workout> sessionWorkouts) {
@@ -86,6 +85,15 @@ public class DAO {
             properties.setProperty(key, value);
             properties.store(out, null);
         }
+    }
+
+    public boolean isAddedToSessionWorkouts(Exercise exercise) {
+        for (Workout workout : getSessionWorkouts()) {
+            if (workout.getExercise().equals(exercise)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Workout findLastWorkout(Exercise exercise) {
@@ -131,8 +139,8 @@ public class DAO {
 
     public long findEstimatedDuration(){
         long estimatedDuration = 0;
-        for (Exercise exercise : sessionExercises) {
-            estimatedDuration += findAverageExerciseDuration(exercise);
+        for (Workout workout : sessionWorkouts) {
+            estimatedDuration += findAverageExerciseDuration(workout.getExercise());
         }
         return estimatedDuration*1000;
     }

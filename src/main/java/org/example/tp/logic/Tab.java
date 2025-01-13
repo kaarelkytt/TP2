@@ -1,14 +1,11 @@
 package org.example.tp.logic;
 
-import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.example.tp.MainApplication;
-import org.example.tp.dao.DAO;
 import org.example.tp.dataobjects.Exercise;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -74,9 +71,18 @@ public class Tab {
     public static void cellFactoriesWithImages(ObservableList<Workout> workouts, ListView<Workout> workoutList) {
         workoutList.setItems(workouts);
 
-
-        workoutList.setCellFactory(null);
         workoutList.setCellFactory(param -> new ListCell<>() {
+            private final ImageView exerciseImage = new ImageView();
+            private final Label name = new Label();
+            private final ImageView dumbellImage = new ImageView();
+            private final VBox vBox = new VBox(name, dumbellImage);
+            private final HBox hBox = new HBox(exerciseImage, vBox);
+
+            {
+                exerciseImage.setPreserveRatio(true);
+                exerciseImage.setFitHeight(100);
+            }
+
 
             @Override
             protected void updateItem(Workout workout, boolean empty) {
@@ -85,18 +91,10 @@ public class Tab {
                 if (empty || workout == null) {
                     setGraphic(null);
                 } else {
-                    ImageView exerciseImage = new ImageView(workout.getExercise().getImage());
-                    exerciseImage.setPreserveRatio(true);
-                    exerciseImage.setFitHeight(100);
-
-                    ImageView dumbellImage = new ImageView();
+                    exerciseImage.setImage(workout.getExercise().getImage());
+                    name.setText(workout.getExercise().getName());
                     dumbellImage.setImage(workout.getWeight() != 0 ? getDumbellImageByWeight(workout.getWeight()) : null);
 
-                    Label name = new Label(workout.getExercise().getName());
-
-                    VBox vBox = new VBox(name, dumbellImage);
-
-                    HBox hBox = new HBox(exerciseImage, vBox);
                     setGraphic(hBox);
                 }
             }

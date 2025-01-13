@@ -1,10 +1,8 @@
 package org.example.tp;
 
-import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import org.example.tp.controllers.MenuBar;
+import org.example.tp.controllers.NewWorkoutTab;
 import org.example.tp.dao.DAO;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -15,8 +13,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import org.example.tp.controllers.ExerciseTab;
-import org.example.tp.controllers.WorkoutTab;
 
 import java.io.IOException;
 
@@ -38,37 +34,12 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Tab workoutTab = new Tab("Workout");
-        workoutTab.setClosable(false);
-        WorkoutTab workoutTabContoller = new WorkoutTab(dao);
-        workoutTab.setContent(loadControls("/org/example/tp/ui/WorkoutTab.fxml", workoutTabContoller));
+        Tab newWorkoutTab = new Tab("New Workout");
+        newWorkoutTab.setClosable(false);
+        NewWorkoutTab newWorkoutTabContoller = new NewWorkoutTab(dao);
+        newWorkoutTab.setContent(loadControls("/org/example/tp/ui/NewWorkoutTab.fxml", newWorkoutTabContoller));
 
-        workoutTab.setOnSelectionChanged (e ->{
-            if (!workoutTab.isSelected()){
-                if (!workoutTabContoller.saveCurrentWorkout()){
-                    // TODO et tabe ei vahetataks
-                    e.consume();
-                }
-            }
-        });
-
-        Tab exerciseTab = new Tab();
-        exerciseTab.setText("Exercise");
-        exerciseTab.setClosable(false);
-        ExerciseTab exerciseTabController = new ExerciseTab(dao);
-        exerciseTab.setContent(loadControls("/org/example/tp/ui/ExerciseTab.fxml", exerciseTabController));
-
-        TabPane tabPane = new TabPane(exerciseTab, workoutTab);
-
-        tabPane.getSelectionModel().selectedItemProperty().addListener(
-                (ov, oldTab, newTab) -> {
-                    // DEL
-                    System.out.println("Tab Selection changed");
-
-                    workoutTabContoller.updateTab();
-                    exerciseTabController.updateTab();
-                }
-        );
+        TabPane tabPane = new TabPane(newWorkoutTab);
 
         tabPane.setId("mainTabPane");
 
@@ -77,17 +48,17 @@ public class MainApplication extends Application {
         //scene.getStylesheets().add(getClass().getResource("Theme.css").toExternalForm());
 
         scene.addEventFilter(KeyEvent.KEY_PRESSED, ke -> {
-            if (ke.getCode() == KeyCode.PAGE_UP && workoutTab.isSelected()) {
-                workoutTabContoller.previousExercise();
+            if (ke.getCode() == KeyCode.PAGE_UP && newWorkoutTab.isSelected()) {
+                newWorkoutTabContoller.previousExercise();
                 ke.consume();
-            } else if (ke.getCode() == KeyCode.PAGE_DOWN && workoutTab.isSelected()) {
-                workoutTabContoller.nextExercise();
+            } else if (ke.getCode() == KeyCode.PAGE_DOWN && newWorkoutTab.isSelected()) {
+                newWorkoutTabContoller.nextExercise();
                 ke.consume();
-            } else if (ke.getCode() == KeyCode.END && workoutTab.isSelected()) {
-                workoutTabContoller.pauseWorkout();
+            } else if (ke.getCode() == KeyCode.END && newWorkoutTab.isSelected()) {
+                newWorkoutTabContoller.pauseWorkout();
                 ke.consume();
-            } else if (ke.getCode() == KeyCode.TAB && workoutTab.isSelected()) {
-                workoutTabContoller.autofill();
+            } else if (ke.getCode() == KeyCode.TAB && newWorkoutTab.isSelected()) {
+                newWorkoutTabContoller.autofill();
             }
         });
 
@@ -102,8 +73,8 @@ public class MainApplication extends Application {
         primaryStage.setTitle("Workout");
         primaryStage.setScene(scene);
         primaryStage.setResizable(true);
-        primaryStage.setMinWidth(1150);
-        primaryStage.setMinHeight(690);
+        primaryStage.setMinWidth(1400);
+        primaryStage.setMinHeight(800);
         primaryStage.getIcons().add(new Image("file:src\\main\\resources\\org\\example\\tp\\pics\\icon.png"));
 
         primaryStage.show();
