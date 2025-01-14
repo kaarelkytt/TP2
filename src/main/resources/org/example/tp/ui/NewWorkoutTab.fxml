@@ -103,24 +103,24 @@
                                                                 <Font size="14.0" />
                                                             </font>
                                                         </Label>
-                                                        <TextField fx:id="weightTextField" onKeyTyped="#weightUpdate" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                        <TextField fx:id="weightTextField" onKeyTyped="#weightUpdate" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                         <Label text="last" GridPane.columnIndex="1" />
-                                                        <Label text="now" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                        <Label fx:id="weightNowLabel" text="now" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                         <Label text="last" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                         <Label text="avg" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                        <Label text="now" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                        <Label text="now" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                        <Label fx:id="repetitionsNowLabel" text="now" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                        <Label fx:id="durationNowLabel" text="now" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                                         <HBox alignment="CENTER_LEFT" onKeyReleased="#repetitionBoxUpdate" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                                             <children>
-                                                                <TextField fx:id="repsTextField1" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" />
+                                                                <TextField fx:id="repsTextField1" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
                                                                 <TextField fx:id="repsTextField2" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
                                                                 <TextField fx:id="repsTextField3" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
                                                                 <TextField fx:id="repsTextField4" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
                                                                 <TextField fx:id="repsTextField5" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
                                                             </children>
                                                         </HBox>
-                                                        <TextArea fx:id="commentTextArea" prefHeight="200.0" prefWidth="200.0" promptText="Add comment" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                                                        <Label fx:id="currentExerciseDurationLabel" text="00:00:00" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                                        <TextArea fx:id="commentTextArea" disable="true" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                                        <Label fx:id="currentExerciseDurationLabel" text="00:00:00" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                                                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="2">
                                                             <children>
                                                                 <Label fx:id="weightLabel">
@@ -249,8 +249,8 @@
             <right>
                 <AnchorPane maxWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Button fx:id="removeFromWorkoutButton" mnemonicParsing="false" onMouseClicked="#removeFromSessionClicked" prefWidth="70.0" text="Remove" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                        <Button fx:id="addToWorkoutButton" mnemonicParsing="false" onMouseClicked="#addToSessionClicked" prefWidth="70.0" text="Add" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+                        <Button fx:id="removeFromWorkoutButton" disable="true" mnemonicParsing="false" onMouseClicked="#removeFromSessionClicked" prefWidth="70.0" text="Remove" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                        <Button fx:id="addToWorkoutButton" disable="true" mnemonicParsing="false" onMouseClicked="#addToSessionClicked" prefWidth="70.0" text="Add" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
                   <Accordion AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <panes>
                         <TitledPane animated="false" text="Biceps">

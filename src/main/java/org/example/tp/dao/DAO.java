@@ -178,6 +178,18 @@ public class DAO {
         }
     }
 
+    public Long getMaxSessionId() {
+        TypedQuery<Long> query = em.createQuery("SELECT MAX(s.id) FROM Session s", Long.class);
+        Long maxId = query.getSingleResult();
+        return maxId != null ? maxId : 0L;
+    }
+
+    public Long getMaxWorkoutId() {
+        TypedQuery<Long> query = em.createQuery("SELECT MAX(w.id) FROM Workout w", Long.class);
+        Long maxId = query.getSingleResult();
+        return maxId != null ? maxId : 0L;
+    }
+
     public void beginTransaction(){
         em.getTransaction().begin();
     }
@@ -190,7 +202,6 @@ public class DAO {
         em.close();
         emf.close();
     }
-
 }
 
 

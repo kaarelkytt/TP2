@@ -9,7 +9,7 @@ import java.util.List;
 public class Session {
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     private String name;
     private LocalDateTime dateTime;
     private long duration;
@@ -17,7 +17,7 @@ public class Session {
     @OneToMany
     private final List<Workout> workouts = new ArrayList<>();
 
-    public Session(int id, String name, LocalDateTime dateTime, long duration, String comment) {
+    public Session(long id, String name, LocalDateTime dateTime, long duration, String comment) {
         this.id = id;
         this.name = name;
         this.dateTime = dateTime;
@@ -25,14 +25,14 @@ public class Session {
         this.comment = comment;
     }
 
-    public Session(int id, String name, LocalDateTime dateTime, int duration) {
+    public Session(long id, String name, LocalDateTime dateTime, int duration) {
         this.id = id;
         this.name = name;
         this.dateTime = dateTime;
         this.duration = duration;
     }
 
-    public Session(int id, LocalDateTime dateTime) {
+    public Session(long id, LocalDateTime dateTime) {
         this.id = id;
         this.dateTime = dateTime;
     }
@@ -56,7 +56,7 @@ public class Session {
         return workouts;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

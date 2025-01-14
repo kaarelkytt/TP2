@@ -12,10 +12,11 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#importHistoryClicked" text="Import History" />
-                  <MenuItem mnemonicParsing="false" onAction="#exportHistoryClicked" text="Export History" />
                   <MenuItem mnemonicParsing="false" onAction="#importExercisesClicked" text="Import Exercises" />
+                  <MenuItem mnemonicParsing="false" onAction="#importHistoryClicked" text="Import History" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" onAction="#exportExercisesClicked" text="Export Exercises" />
+                  <MenuItem mnemonicParsing="false" onAction="#exportHistoryClicked" text="Export History" />
                   <SeparatorMenuItem mnemonicParsing="false" />
               <MenuItem mnemonicParsing="false" text="Close" />
             </items>

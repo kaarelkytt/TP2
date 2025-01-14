@@ -113,9 +113,15 @@ public class NewWorkoutTab implements Initializable {
     @FXML
     private Label weightLabel;
     @FXML
+    private Label weightNowLabel;
+    @FXML
     private Label repetitionsLabel;
     @FXML
+    private Label repetitionsNowLabel;
+    @FXML
     private Label durationLabel;
+    @FXML
+    private Label durationNowLabel;
     @FXML
     private Label currentExerciseDurationLabel;
     @FXML
@@ -297,6 +303,9 @@ public class NewWorkoutTab implements Initializable {
             if (event.getClickCount() == 2)
                 removeWorkout();
         });
+
+        exerciseImage.setPreserveRatio(true);
+        exerciseImage.setFitWidth(360);
     }
 
     private void loadExercises() {
@@ -328,12 +337,12 @@ public class NewWorkoutTab implements Initializable {
         lineChart.setAnimated(false);
     }
 
-    private void updateGraph(Exercise exercise) {
+    private void updateGraph() {
         if (!lineChart.getData().isEmpty()) {
             clearGraph();
         }
 
-        List<Workout> workouts = dao.findAllWorkouts(exercise);
+        List<Workout> workouts = dao.findAllWorkouts(currentWorkout.getExercise());
 
         if (!workouts.isEmpty()) {
             lineChart.getData().add(weightSeries);
@@ -367,7 +376,6 @@ public class NewWorkoutTab implements Initializable {
 
     private void clearGraph() {
         lineChart.getData().clear();
-
         weightSeries.getData().clear();
         repSeries.getData().clear();
     }
@@ -413,17 +421,6 @@ public class NewWorkoutTab implements Initializable {
         updateWorkoutInfo();
     }
 
-
-    public void updateTab() {
-        if (sessionWorkoutsList.getItems().isEmpty()) {
-            clearExerciseInfo();
-        } else {
-            updateWorkoutInfo();
-        }
-
-        updateButtons();
-    }
-
     private void clearExerciseInfo() {
         exerciseName.setText("");
         weightTextField.setText("");
@@ -448,8 +445,10 @@ public class NewWorkoutTab implements Initializable {
         remainedTimeLabel.setText("00:00:00");
         estimatedEndLabel.setText("00:00");
         estimatedDurationLabel.setText("00:00:00");
+        progressBar.setProgress(0);
         exerciseImage.setImage(null);
         dumbellImage.setImage(null);
+        clearGraph();
         updateRepetitionBox();
     }
 
@@ -485,6 +484,11 @@ public class NewWorkoutTab implements Initializable {
 
 
     private void updateWorkoutInfo() {
+        if (currentWorkout == null) {
+            clearExerciseInfo();
+            return;
+        }
+
         Exercise currentExercise = currentWorkout.getExercise();
         Workout lastWorkout = dao.findLastWorkout(currentExercise);
         int[] lastReps = null;
@@ -537,21 +541,32 @@ public class NewWorkoutTab implements Initializable {
 
         estimatedDurationLabel.setText(getFormattedTimeFromMillis(dao.findEstimatedDuration(), false));
         commentTextArea.setText(currentWorkout.getComment());
-
         exerciseImage.setImage(currentExercise.getImage());
-        exerciseImage.setPreserveRatio(true);
-        exerciseImage.setFitWidth(360);
 
-        updateGraph(currentExercise);
+        updateGraph();
         updateDumbellImage();
         updateRepetitionBoxFocus();
         updateButtons();
+        updateTextFields();
 
         boolean isInCurrentSession = dao.isAddedToSessionWorkouts(currentExercise);
         upButton.setDisable(!isInCurrentSession);
         downButton.setDisable(!isInCurrentSession);
         addToWorkoutButton.setDisable(isInCurrentSession);
         removeFromWorkoutButton.setDisable(!isInCurrentSession);
+    }
+
+    private void updateTextFields() {
+        boolean isInCurrentSession = currentWorkout != null && dao.isAddedToSessionWorkouts(currentWorkout.getExercise());
+
+        weightNowLabel.setVisible(isInCurrentSession);
+        repetitionsNowLabel.setVisible(isInCurrentSession);
+        durationNowLabel.setVisible(isInCurrentSession);
+        weightTextField.setVisible(isInCurrentSession);
+        repsTextField1.setVisible(isInCurrentSession);
+        currentExerciseDurationLabel.setVisible(isInCurrentSession);
+
+        commentTextArea.setDisable(!isInCurrentSession);
     }
 
 
@@ -599,7 +614,7 @@ public class NewWorkoutTab implements Initializable {
             showStartAlert();
         }
 
-        newSession = new Session(dao.getSessions().size() + 1, LocalDateTime.now());
+        newSession = new Session(dao.getMaxSessionId() + 1, LocalDateTime.now());
 
         startTimeLabel.setText(newSession.getDateTime().format(DateTimeFormatter.ofPattern("HH:mm")));
         estimatedEndLabel.setText(newSession.getDateTime().plusSeconds(dao.findEstimatedDuration()).format(DateTimeFormatter.ofPattern("HH:mm")));
@@ -735,8 +750,12 @@ public class NewWorkoutTab implements Initializable {
             return;
         }
 
+        Long workoutId = dao.getMaxWorkoutId();
         for (Workout workout : dao.getSessionWorkouts()) {
-            newSession.addWorkout(workout);
+            if (workout.getRepetitions() != null && workout.getRepetitions().length != 0) {
+                workout.setId(++workoutId);
+                newSession.addWorkout(workout);
+            }
         }
 
         dao.saveSession(newSession);
@@ -745,15 +764,22 @@ public class NewWorkoutTab implements Initializable {
 
     private void resetSession() {
         dao.setSessionWorkouts(FXCollections.observableArrayList());
+        sessionWorkoutsList.getItems().clear();
+        currentWorkout = null;
         animationTimer.stop();
 
-        updateTab();
+        clearExerciseInfo();
+        updateTextFields();
 
         pauseButton.setDisable(true);
         finishButton.setDisable(true);
         nextButton.setDisable(true);
         previousButton.setDisable(true);
         startButton.setDisable(false);
+        addToWorkoutButton.setDisable(true);
+        removeFromWorkoutButton.setDisable(true);
+        upButton.setDisable(true);
+        downButton.setDisable(true);
     }
 
     private boolean showSummaryDialog() throws IOException {

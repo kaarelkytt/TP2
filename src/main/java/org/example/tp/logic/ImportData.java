@@ -64,7 +64,7 @@ public class ImportData {
             for (JsonElement workoutJson : workoutsJson.getAsJsonArray()) {
                 JsonObject workoutObject = workoutJson.getAsJsonObject();
 
-                //long workoutId = workoutObject.get("id").getAsLong();
+                long workoutId = workoutObject.get("id").getAsLong();
                 Exercise exercise = dao.getExerciseById(workoutObject.get("exerciseId").getAsInt());
                 LocalDate date = dateTime.toLocalDate();
                 float weight = workoutObject.get("weight").getAsFloat();
@@ -72,7 +72,7 @@ public class ImportData {
                 long workoutDuration = workoutObject.get("duration").getAsLong();
                 String workoutComment = workoutObject.has("comment") ? workoutObject.get("comment").getAsString() : null;
 
-                session.addWorkout(new Workout(exercise, date, weight, repetitions, workoutDuration, workoutComment));
+                session.addWorkout(new Workout(workoutId, exercise, date, weight, repetitions, workoutDuration, workoutComment));
             }
             sessions.add(session);
         }

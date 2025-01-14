@@ -8,7 +8,7 @@ import java.util.Arrays;
 @Entity
 public class Workout {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "exercise_id")
@@ -30,14 +30,6 @@ public class Workout {
         this.comment = comment;
     }
 
-    public Workout(Exercise exercise, String repetitions, float weight, int duration, LocalDate date) {
-        this.exercise = exercise;
-        this.repetitions = repetitions;
-        this.weight = weight;
-        this.duration = duration;
-        this.date = date;
-    }
-
     public Workout(Exercise exercise, LocalDate date, float weight) {
         this.exercise = exercise;
         this.date = date;
@@ -47,13 +39,8 @@ public class Workout {
     public Workout() {
     }
 
-    public Workout(Exercise exercise, LocalDate date, float weight, String repetitions, long workoutDuration, String workoutComment) {
-        this.exercise = exercise;
-        this.date = date;
-        this.weight = weight;
-        this.repetitions = repetitions;
-        this.duration = workoutDuration;
-        this.comment = workoutComment;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setComment(String comment) {
