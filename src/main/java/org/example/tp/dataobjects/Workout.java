@@ -47,6 +47,15 @@ public class Workout {
     public Workout() {
     }
 
+    public Workout(Exercise exercise, LocalDate date, float weight, String repetitions, long workoutDuration, String workoutComment) {
+        this.exercise = exercise;
+        this.date = date;
+        this.weight = weight;
+        this.repetitions = repetitions;
+        this.duration = workoutDuration;
+        this.comment = workoutComment;
+    }
+
     public void setComment(String comment) {
         this.comment = comment;
     }
@@ -99,7 +108,7 @@ public class Workout {
 
 
     public String getDurationString() {
-        return String.format("%02d", duration / 60) + ":" + String.format("%02d", duration % 60);
+        return String.format("%02d", duration / 1000 / 60) + ":" + String.format("%02d", duration / 1000 % 60);
     }
 
     public String getDateString() {
@@ -113,10 +122,13 @@ public class Workout {
     @Override
     public String toString() {
         return "Workout{" +
-                "exercise=" + exercise +
-                ", repetitions=" + repetitions +
+                "id=" + id +
+                ", exercise=" + exercise +
+                ", date=" + date +
                 ", weight=" + weight +
+                ", repetitions='" + repetitions + '\'' +
                 ", duration=" + duration +
+                ", comment='" + comment + '\'' +
                 '}';
     }
 }

@@ -38,22 +38,26 @@ import static org.example.tp.logic.Tab.*;
 
 // TODO reorder with drag and drop
 // TODO auto sort (less weight change, shuffle types, priority - preffered ex. in the beginning)
+// TODO menubar close
 
 // TODO order exercises by how frequently they have been on workouts
 // TODO history calendar view and tabular view
 // TODO history - redo old workout, dropdown menu above current workout to autofill current workout
 
-// TODO save time with millis everywhere, just show in seconds
 // TODO bigger texts
+// TODO exercise categories color
+// TODO clean after session end
+// TODO workout ids in correct order
+
 
 
 // later
 // TODO menubar, add toggle to change rep box update method (previous values from this or last exercise)
 // TODO menubar, add a button to add exercises to database
 // TODO window size change
-// TODO review the weight-rep relation graph
 // TODO more exercises
 // TODO add logging
+// TODO refresh after importing
 
 
 /*
@@ -79,6 +83,7 @@ DONE
 * show time and duration someway better (progress bar and times on the bar and at the end)
 
 * methods for import and export
+* save time with millis everywhere, just show in seconds
  */
 
 
@@ -523,8 +528,8 @@ public class NewWorkoutTab implements Initializable {
         }
 
         if (currentWorkout.getDuration() != 0) {
-            exerciseStartTimeMillis = System.currentTimeMillis() - currentWorkout.getDuration() * 1000;
-            currentExerciseDurationLabel.setText(getFormattedTimeFromMillis(currentWorkout.getDuration() * 1000, false));
+            exerciseStartTimeMillis = System.currentTimeMillis() - currentWorkout.getDuration();
+            currentExerciseDurationLabel.setText(getFormattedTimeFromMillis(currentWorkout.getDuration(), false));
         } else {
             exerciseStartTimeMillis = System.currentTimeMillis();
             currentExerciseDurationLabel.setText("00:00:00");
@@ -597,7 +602,7 @@ public class NewWorkoutTab implements Initializable {
         newSession = new Session(dao.getSessions().size() + 1, LocalDateTime.now());
 
         startTimeLabel.setText(newSession.getDateTime().format(DateTimeFormatter.ofPattern("HH:mm")));
-        estimatedEndLabel.setText(newSession.getDateTime().plusSeconds(dao.findEstimatedDuration() / 1000).format(DateTimeFormatter.ofPattern("HH:mm")));
+        estimatedEndLabel.setText(newSession.getDateTime().plusSeconds(dao.findEstimatedDuration()).format(DateTimeFormatter.ofPattern("HH:mm")));
         running = true;
 
         startTimeMillis = System.currentTimeMillis();
@@ -704,7 +709,7 @@ public class NewWorkoutTab implements Initializable {
 
 
         if (running) {
-            workout.setDuration((System.currentTimeMillis() - exerciseStartTimeMillis) / 1000);
+            workout.setDuration((System.currentTimeMillis() - exerciseStartTimeMillis));
         }
 
         workout.setComment(commentTextArea.getText());
@@ -716,7 +721,7 @@ public class NewWorkoutTab implements Initializable {
         if (!saveCurrentWorkout()) {
             return;
         }
-        newSession.setDuration((System.currentTimeMillis() - startTimeMillis) / 1000);
+        newSession.setDuration((System.currentTimeMillis() - startTimeMillis));
         running = false;
         exerciseImage.setImage(new Image("file:src/main/resources/org/example/tp/pics/pause.png"));
 

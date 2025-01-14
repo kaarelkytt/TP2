@@ -8,11 +8,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2acb9b2-2e32-4dd6-b916-0c962eb53816" name="Changes" comment="Added import and export for exercises and sessions">
+    <list default="true" id="d2acb9b2-2e32-4dd6-b916-0c962eb53816" name="Changes" comment="Import loads data to database, added (overwrite) alerts when importing data">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9b2f0bd8-be04-4aba-8fc7-e4beee6bd846.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9b2f0bd8-be04-4aba-8fc7-e4beee6bd846.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/NewWorkoutTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/NewWorkoutTab.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/dao/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/dao/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/dataobjects/Workout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/dataobjects/Workout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/ExportData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/ExportData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/ImportData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/ImportData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/Tab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/Tab.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +69,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "kaarelkytt"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/kaarelkytt/TP2.git",
+    "accountId": "0489a01e-4ecf-4354-8a2b-81190625f9ed"
+  }
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -78,36 +93,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.TP2 [dependencies].executor": "Run",
-    "Gradle.TP2 [run].executor": "Run",
-    "Gradle.TP2 [startScripts].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Kaarel/Git/TP2/src/main/resources/org/example/tp/ui",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "configurable.group.appearance",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TP2 [dependencies].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TP2 [run].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TP2 [startScripts].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Kaarel/Git/TP2/src/main/resources/org/example/tp/ui&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "h2"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;h2&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Kaarel\Git\TP2\src\main\resources\org\example\tp\ui" />
@@ -221,6 +236,7 @@
       <workItem from="1734181651654" duration="52000" />
       <workItem from="1734340488161" duration="180000" />
       <workItem from="1734460419279" duration="13421000" />
+      <workItem from="1736828224501" duration="3167000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -278,7 +294,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736820518349</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Import loads data to database, added (overwrite) alerts when importing data">
+      <option name="closed" value="true" />
+      <created>1736822737174</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1736822737174</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,6 +327,11 @@
     <MESSAGE value="Updated remainders" />
     <MESSAGE value="Joined exercise and workout tabs and added progress bar" />
     <MESSAGE value="Added import and export for exercises and sessions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added import and export for exercises and sessions" />
+    <MESSAGE value="Import loads data to database, added (overwrite) alerts when importing data" />
+    <option name="LAST_COMMIT_MESSAGE" value="Import loads data to database, added (overwrite) alerts when importing data" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

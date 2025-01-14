@@ -32,8 +32,6 @@ public class DAO {
             properties = new Properties();
             properties.load(in);
         }
-
-        //importData();
     }
 
     public List<Exercise> getExercises() {
@@ -133,6 +131,17 @@ public class DAO {
         em.getTransaction().commit();
     }
 
+    public void saveSessions(List<Session> sessions) {
+        em.getTransaction().begin();
+        for (Session session : sessions) {
+            for (Workout workout : session.getWorkouts()) {
+                em.persist(workout);
+            }
+            em.persist(session);
+        }
+        em.getTransaction().commit();
+    }
+
     public void saveExercises(List<Exercise> exercises) {
         em.getTransaction().begin();
         for (Exercise exercise : exercises) {
@@ -146,12 +155,12 @@ public class DAO {
         for (Workout workout : sessionWorkouts) {
             estimatedDuration += findAverageExerciseDuration(workout.getExercise());
         }
-        return estimatedDuration*1000;
+        return estimatedDuration;
     }
 
     public String averageDurationString(Exercise exercise){
         long duration = findAverageExerciseDuration(exercise);
-        return String.format("%02d", duration / 60) + ":" + String.format("%02d", duration % 60);
+        return String.format("%02d", duration / 1000 / 60) + ":" + String.format("%02d", duration / 1000 % 60);
     }
 
     private long findAverageExerciseDuration(Exercise exercise){
@@ -165,7 +174,7 @@ public class DAO {
         if (!workouts.isEmpty()){
             return totalDuration / workouts.size();
         } else{
-            return 600;
+            return 600000; // default 10 minutes
         }
     }
 

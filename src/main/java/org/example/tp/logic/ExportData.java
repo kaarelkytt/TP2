@@ -27,7 +27,7 @@ public class ExportData {
             JsonObject sessionData = new JsonObject();
             sessionData.addProperty("id", session.getId());
             sessionData.addProperty("name", session.getName());
-            sessionData.addProperty("dateTime", session.getDateTime().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")));
+            sessionData.addProperty("dateTime", session.getDateTime().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss:nnnnnn")));
             sessionData.addProperty("duration", session.getDuration());
             sessionData.addProperty("comment", session.getComment());
 
@@ -47,9 +47,6 @@ public class ExportData {
             sessionData.add("workouts", workouts);
             sessions.add(sessionData);
         }
-
-        //JsonObject historyData = new JsonObject();
-        //historyData.add("Sessions", sessions);
 
         try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)))){
             bw.write(gson.toJson(sessions));
