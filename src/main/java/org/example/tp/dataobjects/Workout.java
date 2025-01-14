@@ -20,6 +20,16 @@ public class Workout {
     private String comment;
 
 
+    public Workout(Long id, Exercise exercise, LocalDate date, float weight, String repetitions, long duration, String comment) {
+        this.id = id;
+        this.exercise = exercise;
+        this.date = date;
+        this.weight = weight;
+        this.repetitions = repetitions;
+        this.duration = duration;
+        this.comment = comment;
+    }
+
     public Workout(Exercise exercise, String repetitions, float weight, int duration, LocalDate date) {
         this.exercise = exercise;
         this.repetitions = repetitions;
@@ -54,6 +64,10 @@ public class Workout {
 
     public void setDuration(long duration) {
         this.duration = duration;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Exercise getExercise() {

@@ -1,6 +1,5 @@
 package org.example.tp.controllers;
 
-import com.sun.xml.bind.v2.TODO;
 import javafx.animation.AnimationTimer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -45,8 +44,7 @@ import static org.example.tp.logic.Tab.*;
 // TODO history - redo old workout, dropdown menu above current workout to autofill current workout
 
 // TODO save time with millis everywhere, just show in seconds
-
-// TODO add logging
+// TODO bigger texts
 
 
 // later
@@ -55,8 +53,8 @@ import static org.example.tp.logic.Tab.*;
 // TODO window size change
 // TODO review the weight-rep relation graph
 // TODO more exercises
+// TODO add logging
 
-// TODO files are for import and export
 
 /*
 DONE
@@ -79,6 +77,8 @@ DONE
 * menubar, add option to turn remainders off and on (and change text)
 * combine exercises and workout tab
 * show time and duration someway better (progress bar and times on the bar and at the end)
+
+* methods for import and export
  */
 
 

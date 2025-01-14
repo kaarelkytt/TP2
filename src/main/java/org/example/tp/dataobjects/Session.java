@@ -17,6 +17,14 @@ public class Session {
     @OneToMany
     private final List<Workout> workouts = new ArrayList<>();
 
+    public Session(int id, String name, LocalDateTime dateTime, long duration, String comment) {
+        this.id = id;
+        this.name = name;
+        this.dateTime = dateTime;
+        this.duration = duration;
+        this.comment = comment;
+    }
+
     public Session(int id, String name, LocalDateTime dateTime, int duration) {
         this.id = id;
         this.name = name;

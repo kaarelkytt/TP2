@@ -5,16 +5,12 @@ import org.example.tp.dataobjects.Session;
 import org.example.tp.dataobjects.Workout;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.example.tp.logic.FromFile;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.io.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -170,59 +166,6 @@ public class DAO {
         emf.close();
     }
 
-
-
-
-    // TODO tee ilusaks - eraldi meetodid begin, commit ja need siis fromFile meetodisse ja sealt ikka oleks sisse lugemine
-
-    public void importData() throws IOException{
-        for (Exercise exercise : FromFile.importExercises("src\\main\\resources\\org\\example\\tp\\data\\exercises.txt")) {
-            em.getTransaction().begin();
-            em.persist(exercise);
-            em.getTransaction().commit();
-        }
-
-        File file = new File("src\\main\\resources\\org\\example\\tp\\data\\history.txt");
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy-HH-mm");
-        String line;
-
-        while ((line = br.readLine()) != null) {
-            String[] data = line.split(",");
-            String[] sessionData = data[0].split(";");
-            LocalDateTime dateTime = LocalDateTime.parse(sessionData[2], dateFormatter);
-            Session session = new Session(Integer.parseInt(sessionData[0]),
-                    sessionData[1].replaceAll("¤", ","),
-                    dateTime,
-                    Integer.parseInt(sessionData[3]));
-            if (sessionData.length > 4) {
-                session.setComment(sessionData[4].replaceAll("¤", ","));
-            }
-            LocalDate date = dateTime.toLocalDate();
-            em.getTransaction().begin();
-            for (int i = 1; i < data.length; i++) {
-                String[] workoutData = data[i].split(";");
-
-                Workout workout = new Workout(getExerciseById(Integer.parseInt(workoutData[0])),
-                        workoutData[1],
-                        workoutData[2].isEmpty() ? 0 : Float.parseFloat(workoutData[2]),
-                        Integer.parseInt(workoutData[3]),
-                        date);
-
-                if (workoutData.length > 4) {
-                    workout.setComment(workoutData[4].replaceAll("¤", ","));
-                }
-
-                em.persist(workout);
-                session.addWorkout(workout);
-            }
-
-            em.persist(session);
-
-            em.getTransaction().commit();
-        }
-    }
 }
 
 
