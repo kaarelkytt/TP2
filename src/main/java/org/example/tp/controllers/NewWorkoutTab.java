@@ -772,18 +772,12 @@ public class NewWorkoutTab implements Initializable {
     }
 
     private void showStartAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Start");
-        alert.setHeaderText("Starting the session!");
-        alert.setContentText(dao.getProperty("startRemainderText"));
+        Alert alert = newAlert("Start", "Starting the session!", dao.getProperty("startRemainderText"), Alert.AlertType.INFORMATION);
         alert.showAndWait();
     }
 
     private void showFinishAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Finish");
-        alert.setHeaderText("Finishing the session!");
-        alert.setContentText(dao.getProperty("endRemainderText"));
+        Alert alert = newAlert("Finish", "Finishing the session!", dao.getProperty("endRemainderText"), Alert.AlertType.INFORMATION);
         alert.showAndWait();
     }
 

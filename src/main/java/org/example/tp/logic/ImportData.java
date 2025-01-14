@@ -1,6 +1,8 @@
 package org.example.tp.logic;
 
 import com.google.gson.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import org.example.tp.dao.DAO;
 import org.example.tp.dataobjects.Exercise;
 import org.example.tp.dataobjects.Session;
@@ -12,10 +14,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import static org.example.tp.logic.Tab.newAlert;
+import static org.example.tp.logic.Tab.showAlert;
+
 public class ImportData {
 
     public static void historyFromJson(File file, DAO dao) throws IOException {
-        Gson gson = new GsonBuilder().create();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         JsonElement historyData;
 
@@ -53,10 +57,15 @@ public class ImportData {
             sessions.add(session);
         }
 
-        // TODO add to database
-        for (Session session : sessions) {
-            System.out.println(session);
-        }
+        Alert alert = newAlert("Warning!", "Overwriting excisting data!", "You are overwrighting all history.\nAre you sure you want to continue?", Alert.AlertType.CONFIRMATION);
+
+        alert.showAndWait()
+                .filter(response -> response == ButtonType.OK)
+                .ifPresent(response -> {
+                    for (Session session : sessions) {
+                        dao.saveSession(session);
+                    }
+                });
     }
 
     public static void exercisesFromJson(File file, DAO dao) throws IOException {
@@ -74,9 +83,10 @@ public class ImportData {
             exercises.add(gson.fromJson(json, Exercise.class));
         }
 
-        // TODO add to database
-        for (Exercise exercise : exercises) {
-            System.out.println(exercise);
-        }
+        Alert alert = newAlert("Warning!", "Overwriting excisting data!", "You are overwrighting all exercises.\nAre you sure you want to continue?", Alert.AlertType.CONFIRMATION);
+
+        alert.showAndWait()
+                .filter(response -> response == ButtonType.OK)
+                .ifPresent(response -> dao.saveExercises(exercises));
     }
 }

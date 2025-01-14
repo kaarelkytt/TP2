@@ -8,18 +8,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2acb9b2-2e32-4dd6-b916-0c962eb53816" name="Changes" comment="Joined exercise and workout tabs and added progress bar">
+    <list default="true" id="d2acb9b2-2e32-4dd6-b916-0c962eb53816" name="Changes" comment="Added import and export for exercises and sessions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/MenuBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/MenuBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/NewWorkoutTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/NewWorkoutTab.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/dao/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/dao/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/dataobjects/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/dataobjects/Session.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/dataobjects/Workout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/dataobjects/Workout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/FromFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/ImportData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/ToFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/ExportData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/tp/ui/MenuBar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/tp/ui/MenuBar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/ImportData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/ImportData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/Tab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/Tab.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,7 +270,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736752190895</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added import and export for exercises and sessions">
+      <option name="closed" value="true" />
+      <created>1736820518349</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1736820518349</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,6 +302,7 @@
     <MESSAGE value="squash! Updated graph" />
     <MESSAGE value="Updated remainders" />
     <MESSAGE value="Joined exercise and workout tabs and added progress bar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Joined exercise and workout tabs and added progress bar" />
+    <MESSAGE value="Added import and export for exercises and sessions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added import and export for exercises and sessions" />
   </component>
 </project>

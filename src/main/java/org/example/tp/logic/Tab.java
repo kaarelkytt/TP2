@@ -1,5 +1,6 @@
 package org.example.tp.logic;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -143,5 +144,14 @@ public class Tab {
         }
 
         return new Image("file:src\\main\\resources\\org\\example\\tp\\pics\\dumbell\\icon\\" + dumbellSize + "_tp.png");
+    }
+
+    public static Alert newAlert(String title, String header, String message, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(message);
+
+        return alert;
     }
 }

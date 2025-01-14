@@ -133,6 +133,14 @@ public class DAO {
         em.getTransaction().commit();
     }
 
+    public void saveExercises(List<Exercise> exercises) {
+        em.getTransaction().begin();
+        for (Exercise exercise : exercises) {
+            em.persist(exercise);
+        }
+        em.getTransaction().commit();
+    }
+
     public long findEstimatedDuration(){
         long estimatedDuration = 0;
         for (Workout workout : sessionWorkouts) {
@@ -159,6 +167,14 @@ public class DAO {
         } else{
             return 600;
         }
+    }
+
+    public void beginTransaction(){
+        em.getTransaction().begin();
+    }
+
+    public void endTransaction(){
+        em.getTransaction().commit();
     }
 
     public void close() {
