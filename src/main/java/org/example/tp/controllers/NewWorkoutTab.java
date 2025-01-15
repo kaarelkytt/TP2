@@ -14,6 +14,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -283,59 +284,62 @@ public class NewWorkoutTab implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initializeFields();
+        initializeUIComponents();
+        initializeEventHandlers();
+    }
+
+    private void initializeFields() {
         reps = new TextField[]{repsTextField1, repsTextField2, repsTextField3, repsTextField4, repsTextField5};
         cellFactoriesWithImages(dao.getSessionWorkouts(), sessionWorkoutsList);
-
         loadExercises();
-        loadGraphData();
+    }
 
-        List<ListView<Exercise>> allExercises = Arrays.asList(absList, backList, bicepsList, chestList, shouldersList, tricepsList, legsList);
-
-        for (ListView<Exercise> listView : allExercises) {
-            listView.setOnMouseClicked(event -> {
-                updateCurrentWorkoutFromExercises(listView);
-                if (event.getClickCount() == 2)
-                    addNewWorkout();
-            });
-        }
-
-        sessionWorkoutsList.setOnMouseClicked(event -> {
-            updateCurrentWorkoutFromSelected();
-            if (event.getClickCount() == 2)
-                removeWorkout();
-        });
-
+    private void initializeUIComponents() {
+        weightSeries.setName("Weights");
+        repSeries.setName("Repetitions");
+        lineChart.setAnimated(false);
         exerciseImage.setPreserveRatio(true);
         exerciseImage.setFitWidth(360);
     }
 
+    private void initializeEventHandlers() {
+        List<ListView<Exercise>> allExercises = Arrays.asList(absList, backList, bicepsList, chestList, shouldersList, tricepsList, legsList);
+        for (ListView<Exercise> listView : allExercises) {
+            listView.setOnMouseClicked(event -> handleExerciseListClick(event, listView));
+        }
+        sessionWorkoutsList.setOnMouseClicked(this::handleSessionWorkoutsListClick);
+    }
+
+    private void handleExerciseListClick(MouseEvent event, ListView<Exercise> listView) {
+        updateCurrentWorkoutFromExercises(listView);
+        if (event.getClickCount() == 2) {
+            addNewWorkout();
+        }
+    }
+
+    private void handleSessionWorkoutsListClick(MouseEvent event) {
+        updateCurrentWorkoutFromSelected();
+        if (event.getClickCount() == 2) {
+            removeWorkout();
+        }
+    }
+
     private void loadExercises() {
-        cellFactories(getExercisesList(ABS), absList);
-        cellFactories(getExercisesList(BACK), backList);
-        cellFactories(getExercisesList(BICEPS), bicepsList);
-        cellFactories(getExercisesList(CHEST), chestList);
-        cellFactories(getExercisesList(SHOULDERS), shouldersList);
-        cellFactories(getExercisesList(TRICEPS), tricepsList);
-        cellFactories(getExercisesList(LEGS), legsList);
+        Exercise.Category[] categories = {ABS, BACK, BICEPS, CHEST, SHOULDERS, TRICEPS, LEGS};
+        List<ListView<Exercise>> lists = Arrays.asList(absList, backList, bicepsList, chestList, shouldersList, tricepsList, legsList);
+
+        for (int i = 0; i < categories.length; i++) {
+            cellFactories(getExercisesList(categories[i]), lists.get(i));
+        }
     }
 
     private ObservableList<Exercise> getExercisesList(Exercise.Category category) {
-        List<Exercise> allExercises = dao.getExercises();
-        ObservableList<Exercise> selectedExercises = FXCollections.observableArrayList();
-
-        for (Exercise exercise : allExercises) {
-            if (exercise.getCategory() == category) {
-                selectedExercises.add(exercise);
-            }
-        }
-
-        return selectedExercises;
-    }
-
-    private void loadGraphData() {
-        weightSeries.setName("Weights");
-        repSeries.setName("Repetitions");
-        lineChart.setAnimated(false);
+        return FXCollections.observableArrayList(
+                dao.getExercises().stream()
+                        .filter(exercise -> exercise.getCategory() == category)
+                        .toList()
+        );
     }
 
     private void updateGraph() {
