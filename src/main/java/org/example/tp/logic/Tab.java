@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import org.example.tp.MainApplication;
 import org.example.tp.dataobjects.Exercise;
 import javafx.collections.ObservableList;
@@ -39,44 +40,15 @@ public class Tab {
         });
     }
 
-    public static void cellFactoriesWithCategory(ObservableList<Exercise> exercises, ListView<Exercise> exerciseList) {
-        exerciseList.setItems(exercises);
-
-        exerciseList.setCellFactory(param -> new ListCell<>() {
-            @Override
-            protected void updateItem(Exercise exercise, boolean empty) {
-                super.updateItem(exercise, empty);
-
-                if (empty || exercise == null || exercise.getName() == null) {
-                    setText(null);
-                    setTextFill(Color.BLACK);
-                } else {
-                    switch (exercise.getCategory()){
-                        case BICEPS -> setTextFill(Color.web("#FF7F50"));
-                        case TRICEPS -> setTextFill(Color.web("#FFA852"));
-                        case CHEST -> setTextFill(Color.web("#FF5252"));
-
-                        case ABS -> setTextFill(Color.web("#0099CC"));
-                        case BACK -> setTextFill(Color.web("#668CFF"));
-                        case SHOULDERS -> setTextFill(Color.web("#7DB3E8"));
-
-                        case LEGS -> setTextFill(Color.web("#063970"));
-                    }
-
-                    setText(String.format("%s - %s", exercise.getCategory().name().substring(0,2), exercise.getName()));
-                }
-            }
-        });
-    }
-
     public static void cellFactoriesWithImages(ObservableList<Workout> workouts, ListView<Workout> workoutList) {
         workoutList.setItems(workouts);
 
         workoutList.setCellFactory(param -> new ListCell<>() {
             private final ImageView exerciseImage = new ImageView();
-            private final Label name = new Label();
+            private final Label nameLabel = new Label();
+            private final Label categoryLabel = new Label();
             private final ImageView dumbellImage = new ImageView();
-            private final VBox vBox = new VBox(name, dumbellImage);
+            private final VBox vBox = new VBox(nameLabel, categoryLabel, dumbellImage);
             private final HBox hBox = new HBox(exerciseImage, vBox);
 
             {
@@ -93,13 +65,28 @@ public class Tab {
                     setGraphic(null);
                 } else {
                     exerciseImage.setImage(workout.getExercise().getImage());
-                    name.setText(workout.getExercise().getName());
+                    nameLabel.setText(workout.getExercise().getName());
+                    categoryLabel.setTextFill(getColorByCategory(workout.getExercise().getCategory()));
+                    categoryLabel.setText(workout.getExercise().getCategory().name().toLowerCase());
                     dumbellImage.setImage(workout.getWeight() != 0 ? getDumbellImageByWeight(workout.getWeight()) : null);
 
                     setGraphic(hBox);
                 }
             }
         });
+    }
+
+    private static Paint getColorByCategory(Exercise.Category category) {
+        switch (category) {
+            case BICEPS -> { return Color.web("#FF7F50"); }
+            case TRICEPS -> { return Color.web("#FFA852"); }
+            case CHEST -> { return Color.web("#FF5252"); }
+            case ABS -> { return Color.web("#0099CC"); }
+            case BACK -> { return Color.web("#668CFF"); }
+            case SHOULDERS -> { return Color.web("#7DB3E8"); }
+            case LEGS -> { return Color.web("#063970"); }
+        }
+        return Color.BLACK;
     }
 
     public static Node loadControls(String fxml, Initializable controller) throws IOException {

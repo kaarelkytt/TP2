@@ -45,10 +45,6 @@ import static org.example.tp.logic.Tab.*;
 // TODO history - redo old workout, dropdown menu above current workout to autofill current workout
 
 // TODO bigger texts
-// TODO exercise categories color
-// TODO clean after session end
-// TODO workout ids in correct order
-
 
 
 // later
@@ -84,6 +80,11 @@ DONE
 
 * methods for import and export
 * save time with millis everywhere, just show in seconds
+
+* clean after session end
+* workout ids in correct order
+
+* exercise categories color
  */
 
 
