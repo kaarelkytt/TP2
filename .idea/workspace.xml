@@ -9,13 +9,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2acb9b2-2e32-4dd6-b916-0c962eb53816" name="Changes" comment="Import loads data to database, added (overwrite) alerts when importing data">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9b2f0bd8-be04-4aba-8fc7-e4beee6bd846.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9b2f0bd8-be04-4aba-8fc7-e4beee6bd846.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/NewWorkoutTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/controllers/NewWorkoutTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/dao/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/dao/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/dataobjects/Workout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/dataobjects/Workout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/ExportData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/ExportData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/ImportData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tp/logic/ImportData.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,18 +64,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "kaarelkytt"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;kaarelkytt&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/kaarelkytt/TP2.git",
-    "accountId": "0489a01e-4ecf-4354-8a2b-81190625f9ed"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/kaarelkytt/TP2.git&quot;,
+    &quot;accountId&quot;: &quot;0489a01e-4ecf-4354-8a2b-81190625f9ed&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -237,6 +232,7 @@
       <workItem from="1734340488161" duration="180000" />
       <workItem from="1734460419279" duration="13421000" />
       <workItem from="1736828224501" duration="3167000" />
+      <workItem from="1737926905520" duration="1045000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />

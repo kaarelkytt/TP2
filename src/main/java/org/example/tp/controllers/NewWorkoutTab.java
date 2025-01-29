@@ -46,6 +46,9 @@ import static org.example.tp.logic.Tab.*;
 // TODO history - redo old workout, dropdown menu above current workout to autofill current workout
 
 // TODO bigger texts
+// TODO reps on the graph (show all reps)
+
+// TODO fix bug - when finished a session and then start a new one, the workouts is not showed in the list
 
 
 // later

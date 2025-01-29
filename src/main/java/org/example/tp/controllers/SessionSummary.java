@@ -54,14 +54,14 @@ public class SessionSummary implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        durationLabel.setText(getFormattedTimeFromMillis(session.getDuration() * 1000, false));
+        durationLabel.setText(getFormattedTimeFromMillis(session.getDuration(), false));
         dateLabel.setText(session.getDateTime().format(DateTimeFormatter.ofPattern("HH:mm:ss - dd.MM.yyyy")));
 
         exercisesTableView.setItems(dao.getSessionWorkouts());
         nameTableColumn.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getExercise().getName()));
         weightTableColumn.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getWeight()));
         repetitionTableColumn.setCellValueFactory(entry -> new SimpleObjectProperty<>(entry.getValue().getRepetitionsString("-")));
-        durationTableColumn.setCellValueFactory(entry -> new SimpleObjectProperty<>(getFormattedTimeFromMillis(entry.getValue().getDuration() * 1000, false)));
+        durationTableColumn.setCellValueFactory(entry -> new SimpleObjectProperty<>(getFormattedTimeFromMillis(entry.getValue().getDuration(), false)));
     }
 
     private void save() {
