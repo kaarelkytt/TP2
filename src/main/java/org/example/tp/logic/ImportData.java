@@ -9,6 +9,7 @@ import org.example.tp.dataobjects.Session;
 import org.example.tp.dataobjects.Workout;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,7 +23,7 @@ public class ImportData {
         Gson gson = new GsonBuilder().create();
         JsonElement exercisesData;
 
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)))){
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))){
             exercisesData = JsonParser.parseReader(br);
         }
 
@@ -43,7 +44,7 @@ public class ImportData {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss:nnnnnn");
         JsonElement historyData;
 
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)))){
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))){
             historyData = JsonParser.parseReader(br);
         }
 

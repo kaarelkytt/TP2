@@ -6,6 +6,7 @@ import org.example.tp.dataobjects.Session;
 import org.example.tp.dataobjects.Workout;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.time.format.DateTimeFormatter;
 
 public class ExportData {
@@ -13,7 +14,7 @@ public class ExportData {
     public static void exercisesToJson(File file, DAO dao) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)))){
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8))){
             bw.write(gson.toJson(dao.getExercises()));
         }
     }
@@ -23,7 +24,7 @@ public class ExportData {
 
         JsonArray sessions = new JsonArray();
 
-        for (Session session : dao.getSessions()) {
+        for (Session session : dao.getAllSessions()) {
             JsonObject sessionData = new JsonObject();
             sessionData.addProperty("id", session.getId());
             sessionData.addProperty("name", session.getName());
@@ -48,7 +49,7 @@ public class ExportData {
             sessions.add(sessionData);
         }
 
-        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)))){
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8))){
             bw.write(gson.toJson(sessions));
         }
 
