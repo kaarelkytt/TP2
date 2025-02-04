@@ -3,7 +3,11 @@ package org.example.tp.dataobjects;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import static org.example.tp.logic.Tab.capitalize;
 
 @Entity
 public class Session {
@@ -90,5 +94,14 @@ public class Session {
                 ", comment='" + comment + '\'' +
                 ", workouts=" + workouts +
                 '}';
+    }
+
+    public String getMuscleGroups() {
+        Set<String> muscleGroups = new HashSet<>();
+        for (Workout workout : workouts) {
+            muscleGroups.add(capitalize(workout.getExercise().getCategory().name()));
+        }
+
+        return String.join(", ", muscleGroups);
     }
 }

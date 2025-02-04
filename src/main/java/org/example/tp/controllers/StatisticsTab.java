@@ -5,16 +5,19 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import org.example.tp.dao.DAO;
+import org.example.tp.dataobjects.Session;
 import org.example.tp.dataobjects.Workout;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -26,6 +29,8 @@ public class StatisticsTab implements Initializable {
     private final LocalDate date = LocalDate.now();
     private YearMonth yearMonth = YearMonth.of(date.getYear(), date.getMonth());
     private final List<CalendarCell> calendarCells = new ArrayList<>();
+    private int sessionIndex = 0;
+    List<Session> sessions = new ArrayList<>();
 
     @FXML
     private GridPane gridPane;
@@ -34,9 +39,38 @@ public class StatisticsTab implements Initializable {
     private ListView<Workout> sessionListView;
 
     @FXML
+    private Button previousSessionButton;
+    @FXML
+    private Button nextSessionButton;
+
+    @FXML
     private Label monthLabel;
     @FXML
     private Label yearLabel;
+    @FXML
+    private Label musclesLabel;
+    @FXML
+    private Label sessionNameLabel;
+    @FXML
+    private Label timeLabel;
+    @FXML
+    private Label commentLabel;
+    @FXML
+    private Label durationLabel;
+
+    @FXML
+    private void previousSessionClicked() {
+        sessionIndex = sessionIndex - 1 >= 0 ? sessionIndex - 1  : sessions.size() - 1;
+        System.out.println(sessionIndex);
+        updateSessionInfo();
+    }
+
+    @FXML
+    private void nextSessionClicked() {
+        sessionIndex = sessionIndex + 1 < sessions.size() ? sessionIndex + 1 : 0;
+        System.out.println(sessionIndex);
+        updateSessionInfo();
+    }
 
     @FXML
     private void previousMonthClicked() {
@@ -67,6 +101,7 @@ public class StatisticsTab implements Initializable {
         loadWorkouts();
     }
 
+
     public StatisticsTab(DAO dao) {
         this.dao = dao;
     }
@@ -95,10 +130,42 @@ public class StatisticsTab implements Initializable {
                 Node cell = loadControls("/org/example/tp/ui/CalendarCell.fxml", dayCell);
                 gridPane.add(cell, i % 7, i / 7 + 1);
                 calendarCells.add(dayCell);
+
+                cell.setOnMouseClicked(event -> {
+                    sessions = dao.getDateSessions(dayCell.getDate());
+                    sessionIndex = 0;
+                    timeLabel.setText(dayCell.getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+                    updateSessionInfo();
+                });
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    public void updateSessionInfo(){
+        dao.getOldSessionWorkouts().clear();
+
+        if (sessions.isEmpty()) {
+            sessionNameLabel.setText("");
+            commentLabel.setText("");
+            musclesLabel.setText("");
+            durationLabel.setText("");
+            return;
+        }
+
+        boolean multipleSessions = sessions.size() > 1;
+        nextSessionButton.setVisible(multipleSessions);
+        previousSessionButton.setVisible(multipleSessions);
+
+        Session session = sessions.get(sessionIndex);
+
+        dao.getOldSessionWorkouts().addAll(session.getWorkouts());
+        sessionNameLabel.setText(session.getName());
+        commentLabel.setText(session.getComment());
+        musclesLabel.setText(session.getMuscleGroups());
+        durationLabel.setText(getFormattedTimeFromMillis(session.getDuration(), false));
+        timeLabel.setText(session.getDateTime().format(DateTimeFormatter.ofPattern("dd.MM.yyyy\nHH:mm")));
     }
 
     public void updateCalendar() {

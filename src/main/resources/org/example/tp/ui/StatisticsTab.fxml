@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
             <AnchorPane prefHeight="200.0" prefWidth="300.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label alignment="CENTER" layoutX="5.0" layoutY="5.0" text="Session" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                  <Label fx:id="musclesLabel" alignment="CENTER" layoutX="5.0" layoutY="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <ListView fx:id="sessionListView" fixedCellSize="100.0" layoutX="5.0" layoutY="27.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0" />
+                  <ListView fx:id="sessionListView" fixedCellSize="100.0" focusTraversable="false" layoutX="5.0" layoutY="27.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0" />
                   <Button mnemonicParsing="false" onAction="#loadWorkoutsClicked" text="Load Workouts" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
                </children>
             </AnchorPane>
@@ -52,17 +53,17 @@
                         <Label text="Sun" GridPane.columnIndex="6" GridPane.halignment="CENTER" />
                      </children>
                   </GridPane>
-                  <Button mnemonicParsing="false" onAction="#previousMonthClicked" prefHeight="30.0" prefWidth="30.0" text="&lt;" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+                  <Button mnemonicParsing="false" onAction="#previousMonthClicked" prefWidth="30.0" text="&lt;" AnchorPane.rightAnchor="285.0" AnchorPane.topAnchor="70.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#nextMonthClicked" text="&gt;" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="15.0">
+                  <Button mnemonicParsing="false" onAction="#nextMonthClicked" prefWidth="30.0" text="&gt;" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="70.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <AnchorPane layoutX="50.0" layoutY="15.0" prefHeight="30.0" prefWidth="80.0" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="15.0">
+                  <AnchorPane layoutX="50.0" layoutY="15.0" prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="205.0" AnchorPane.topAnchor="70.0">
                      <children>
                         <Label fx:id="monthLabel" alignment="CENTER" text="Month" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
@@ -71,17 +72,17 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <Button mnemonicParsing="false" onAction="#previousYearClicked" prefHeight="30.0" prefWidth="30.0" text="&lt;" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="15.0">
+                  <Button mnemonicParsing="false" onAction="#previousYearClicked" prefWidth="30.0" text="&lt;" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="70.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#nextYearClicked" prefHeight="30.0" prefWidth="30.0" text="&gt;" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                  <Button mnemonicParsing="false" onAction="#nextYearClicked" prefWidth="30.0" text="&gt;" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="70.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <AnchorPane prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="15.0">
+                  <AnchorPane prefHeight="30.0" prefWidth="80.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="70.0">
                      <children>
                         <Label fx:id="yearLabel" alignment="CENTER" text="Year" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
@@ -90,6 +91,40 @@
                         </Label>
                      </children>
                   </AnchorPane>
+                  <Label fx:id="sessionNameLabel" text="Session" AnchorPane.leftAnchor="165.0" AnchorPane.topAnchor="0.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="durationLabel" AnchorPane.leftAnchor="165.0" AnchorPane.topAnchor="45.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="commentLabel" maxWidth="300.0" AnchorPane.leftAnchor="165.0" AnchorPane.topAnchor="72.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="timeLabel" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="5.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <Button fx:id="previousSessionButton" mnemonicParsing="false" onAction="#previousSessionClicked" text="↑" visible="false" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="10.0" />
+                  <Button fx:id="nextSessionButton" mnemonicParsing="false" onAction="#nextSessionClicked" text="↓" visible="false" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="40.0" />
                </children>
             </AnchorPane>
          </center>

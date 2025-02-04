@@ -1,6 +1,5 @@
 package org.example.tp.controllers;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -8,7 +7,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import org.example.tp.dao.DAO;
 import org.example.tp.dataobjects.Session;
-import org.example.tp.dataobjects.Workout;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -32,18 +30,14 @@ public class CalendarCell implements Initializable {
         this.dao = dao;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         anchorPane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, null, new BorderWidths(1, 0, 0, 1))));
-        anchorPane.setOnMouseClicked(event -> {
-            dao.getOldSessionWorkouts().clear();
-            List<Session> sessions = dao.getDateSessions(date);
 
-            if (!sessions.isEmpty()) {
-                dao.getOldSessionWorkouts().addAll(sessions.getFirst().getWorkouts());
-            }
-
-        });
         anchorPane.setOnMouseEntered(event -> {
             anchorPane.setOpacity(anchorPane.getOpacity() + 0.2);
         });
@@ -65,7 +59,7 @@ public class CalendarCell implements Initializable {
             if (isCurrentMonth){
                 anchorPane.setStyle("-fx-background-color: #FFFFFF");
             } else {
-                anchorPane.setStyle("-fx-background-color: #EEEEEE");
+                anchorPane.setStyle("-fx-background-color: #DDDDDD");
             }
         } else{
             anchorPane.setStyle("-fx-background-color: #96C841");
