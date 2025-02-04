@@ -11,6 +11,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -22,6 +23,7 @@ public class DAO {
     private final Properties properties;
 
     private ObservableList<Workout> sessionWorkouts = FXCollections.observableArrayList();
+    private ObservableList<Workout> oldSessionWorkouts = FXCollections.observableArrayList();
 
 
     public DAO() throws IOException {
@@ -48,13 +50,24 @@ public class DAO {
         return null;
     }
 
-    public List<Session> getSessions() {
+    public List<Session> getAllSessions() {
         TypedQuery<Session> query = em.createQuery("SELECT s FROM Session s ORDER BY s.dateTime DESC", Session.class);
+        return query.getResultList();
+    }
+
+    public List<Session> getDateSessions(LocalDate date) {
+        TypedQuery<Session> query = em.createQuery("SELECT s FROM Session s WHERE s.dateTime BETWEEN :start AND :end ORDER BY s.dateTime DESC", Session.class);
+        query.setParameter("start", date.atStartOfDay());
+        query.setParameter("end", date.atTime(23, 59, 59));
         return query.getResultList();
     }
 
     public ObservableList<Workout> getSessionWorkouts() {
         return sessionWorkouts;
+    }
+
+    public ObservableList<Workout> getOldSessionWorkouts() {
+        return oldSessionWorkouts;
     }
 
     public Workout getSessionWorkout(Exercise exercise) {
@@ -91,7 +104,7 @@ public class DAO {
     }
 
     public Workout findLastWorkout(Exercise exercise) {
-        for (Session session : getSessions()) {
+        for (Session session : getAllSessions()) {
             for (Workout workout : session.getWorkouts()) {
                 if (workout.getExercise().getId() == exercise.getId()) {
                     return workout;
@@ -103,7 +116,7 @@ public class DAO {
 
     public List<Workout> findAllWorkouts(Exercise exercise) {
         ArrayList<Workout> allWorkouts = new ArrayList<>();
-        for (Session session : getSessions()) {
+        for (Session session : getAllSessions()) {
             for (Workout workout : session.getWorkouts()) {
                 if (workout.getExercise().getId() == exercise.getId()) {
                     allWorkouts.add(workout);

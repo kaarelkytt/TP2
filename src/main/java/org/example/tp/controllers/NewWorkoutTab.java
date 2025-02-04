@@ -37,23 +37,16 @@ import static org.example.tp.dataobjects.Exercise.Category.*;
 import static org.example.tp.logic.Tab.*;
 
 
-// TODO reorder with drag and drop
-// TODO auto sort (less weight change, shuffle types, priority - preffered ex. in the beginning)
-// TODO menubar close
-
 // TODO order exercises by how frequently they have been on workouts
-// TODO history calendar view and tabular view
-// TODO history - redo old workout, dropdown menu above current workout to autofill current workout
 
 // TODO bigger texts
-// TODO reps on the graph (show all reps)
-
-// TODO fix bug - when finished a session and then start a new one, the workouts is not showed in the list
 
 
 // later
+// TODO reorder with drag and drop
 // TODO menubar, add toggle to change rep box update method (previous values from this or last exercise)
 // TODO menubar, add a button to add exercises to database
+// TODO menubar close
 // TODO window size change
 // TODO more exercises
 // TODO add logging
@@ -89,6 +82,11 @@ DONE
 * workout ids in correct order
 
 * exercise categories color
+
+* fix bug - when finished a session and then start a new one, the workouts is not showed in the list
+* reps on the graph (show all reps)
+* history calendar view and tabular view
+* history - redo old workout, dropdown menu above current workout to autofill current workout
  */
 
 
@@ -196,7 +194,7 @@ public class NewWorkoutTab implements Initializable {
     private ImageView dumbellImage;
 
     @FXML
-    private ListView<Workout> sessionWorkoutsList;
+    private ListView<Workout> sessionWorkoutsListView;
 
     @FXML
     private ProgressBar progressBar;
@@ -294,7 +292,7 @@ public class NewWorkoutTab implements Initializable {
 
     private void initializeFields() {
         reps = new TextField[]{repsTextField1, repsTextField2, repsTextField3, repsTextField4, repsTextField5};
-        cellFactoriesWithImages(dao.getSessionWorkouts(), sessionWorkoutsList);
+        cellFactoriesWithImages(dao.getSessionWorkouts(), sessionWorkoutsListView);
         loadExercises();
     }
 
@@ -311,7 +309,7 @@ public class NewWorkoutTab implements Initializable {
         for (ListView<Exercise> listView : allExercises) {
             listView.setOnMouseClicked(event -> handleExerciseListClick(event, listView));
         }
-        sessionWorkoutsList.setOnMouseClicked(this::handleSessionWorkoutsListClick);
+        sessionWorkoutsListView.setOnMouseClicked(this::handleSessionWorkoutsListClick);
     }
 
     private void handleExerciseListClick(MouseEvent event, ListView<Exercise> listView) {
@@ -361,10 +359,10 @@ public class NewWorkoutTab implements Initializable {
 
             for (Workout workout : workouts) {
                 float weight = workout.getWeight();
-                double reps = Arrays.stream(workout.getRepetitions()).average().orElse(0);
+                double avgReps = Arrays.stream(workout.getRepetitions()).average().orElse(0);
                 String date = workout.getDateString();
 
-                Tooltip tooltip = new Tooltip(date + "\n  Reps: " + reps);
+                Tooltip tooltip = new Tooltip(date + "\n  Reps: " + workout.getRepetitionsString("-") + " (" + avgReps + ")");
                 tooltip.setShowDelay(Duration.millis(0));
 
                 if (weight != 0) {
@@ -375,7 +373,7 @@ public class NewWorkoutTab implements Initializable {
                     Tooltip.install(weight_data.getNode(), tooltip);
                 }
 
-                XYChart.Data<String, Number> reps_data = new XYChart.Data<>(date, reps);
+                XYChart.Data<String, Number> reps_data = new XYChart.Data<>(date, avgReps);
                 repSeries.getData().add(reps_data);
                 Tooltip.install(reps_data.getNode(), tooltip);
             }
@@ -403,7 +401,7 @@ public class NewWorkoutTab implements Initializable {
             }
             sessionWorkouts.add(index, selectedWorkout);
 
-            sessionWorkoutsList.getSelectionModel().select(index);
+            sessionWorkoutsListView.getSelectionModel().select(index);
         }
     }
 
@@ -414,7 +412,7 @@ public class NewWorkoutTab implements Initializable {
             dao.setSessionWorkouts(sessionWorkouts);
         }
 
-        sessionWorkoutsList.getSelectionModel().select(currentWorkout);
+        sessionWorkoutsListView.getSelectionModel().select(currentWorkout);
         updateWorkoutInfo();
     }
 
@@ -468,12 +466,12 @@ public class NewWorkoutTab implements Initializable {
 
             if (dao.isAddedToSessionWorkouts(focusedExercise)) {
                 currentWorkout = dao.getSessionWorkout(focusedExercise);
-                sessionWorkoutsList.getSelectionModel().select(currentWorkout);
+                sessionWorkoutsListView.getSelectionModel().select(currentWorkout);
             } else {
                 Workout lastWorkout = dao.findLastWorkout(focusedExercise);
                 float weight = lastWorkout != null ? lastWorkout.getWeight() : 0;
                 currentWorkout = new Workout(focusedExercise, LocalDate.now(), weight);
-                sessionWorkoutsList.getSelectionModel().clearSelection();
+                sessionWorkoutsListView.getSelectionModel().clearSelection();
             }
         }
 
@@ -483,8 +481,8 @@ public class NewWorkoutTab implements Initializable {
     private void updateCurrentWorkoutFromSelected() {
         saveCurrentWorkout();
 
-        if (sessionWorkoutsList.getFocusModel().getFocusedItem() != null) {
-            currentWorkout = sessionWorkoutsList.getFocusModel().getFocusedItem();
+        if (sessionWorkoutsListView.getFocusModel().getFocusedItem() != null) {
+            currentWorkout = sessionWorkoutsListView.getFocusModel().getFocusedItem();
         }
 
         updateWorkoutInfo();
@@ -601,7 +599,7 @@ public class NewWorkoutTab implements Initializable {
     }
 
     private void updateDumbellImage() {
-        sessionWorkoutsList.refresh();
+        sessionWorkoutsListView.refresh();
 
         try {
             if (!weightTextField.getText().isBlank()) {
@@ -685,22 +683,22 @@ public class NewWorkoutTab implements Initializable {
 
 
     public void nextExercise() {
-        sessionWorkoutsList.getSelectionModel().selectNext();
+        sessionWorkoutsListView.getSelectionModel().selectNext();
         updateCurrentWorkoutFromSelected();
         updateButtons();
     }
 
 
     public void previousExercise() {
-        sessionWorkoutsList.getSelectionModel().selectPrevious();
+        sessionWorkoutsListView.getSelectionModel().selectPrevious();
         updateCurrentWorkoutFromSelected();
         updateButtons();
     }
 
 
     private void updateButtons() {
-        int i = sessionWorkoutsList.getSelectionModel().getSelectedIndex();
-        nextButton.setDisable(i >= sessionWorkoutsList.getItems().size() - 1);
+        int i = sessionWorkoutsListView.getSelectionModel().getSelectedIndex();
+        nextButton.setDisable(i >= sessionWorkoutsListView.getItems().size() - 1);
         previousButton.setDisable(i <= 0);
     }
 
@@ -771,8 +769,8 @@ public class NewWorkoutTab implements Initializable {
     }
 
     private void resetSession() {
-        dao.setSessionWorkouts(FXCollections.observableArrayList());
-        sessionWorkoutsList.getItems().clear();
+        dao.getSessionWorkouts().clear();
+        sessionWorkoutsListView.getItems().clear();
         currentWorkout = null;
         animationTimer.stop();
 

@@ -3,6 +3,7 @@ package org.example.tp;
 import javafx.scene.control.*;
 import org.example.tp.controllers.MenuBar;
 import org.example.tp.controllers.NewWorkoutTab;
+import org.example.tp.controllers.StatisticsTab;
 import org.example.tp.dao.DAO;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -39,7 +40,12 @@ public class MainApplication extends Application {
         NewWorkoutTab newWorkoutTabContoller = new NewWorkoutTab(dao);
         newWorkoutTab.setContent(loadControls("/org/example/tp/ui/NewWorkoutTab.fxml", newWorkoutTabContoller));
 
-        TabPane tabPane = new TabPane(newWorkoutTab);
+        Tab statisticsTab = new Tab("History");
+        statisticsTab.setClosable(false);
+        StatisticsTab statisticsTabContoller = new StatisticsTab(dao);
+        statisticsTab.setContent(loadControls("/org/example/tp/ui/StatisticsTab.fxml", statisticsTabContoller));
+
+        TabPane tabPane = new TabPane(newWorkoutTab, statisticsTab);
 
         tabPane.setId("mainTabPane");
 
