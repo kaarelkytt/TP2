@@ -1,17 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="700.0" minWidth="1350.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="700.0" minWidth="1350.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <left>
-                <AnchorPane maxWidth="300.0" minWidth="300.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.5, 0.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+                <AnchorPane maxWidth="360.0" minWidth="300.0">
                     <children>
                         <ListView fx:id="sessionWorkoutsListView" fixedCellSize="100.0" focusTraversable="false" layoutX="5.0" layoutY="40.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="40.0" />
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Current Workout" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -26,105 +43,148 @@
                         <Button fx:id="upButton" disable="true" layoutX="10.0" layoutY="665.0" mnemonicParsing="false" onMouseClicked="#upButtonClicked" prefWidth="85.0" text="Move Up" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
                     </children>
                 </AnchorPane>
-            </left>
-            <center>
-                <AnchorPane maxWidth="800.0" BorderPane.alignment="CENTER">
+                <AnchorPane>
                     <children>
-                        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <top>
-                                <Label fx:id="exerciseName" BorderPane.alignment="CENTER">
-                                    <BorderPane.margin>
-                                        <Insets right="300.0" />
-                                    </BorderPane.margin>
-                                    <font>
-                                        <Font size="24.0" />
-                                    </font>
-                                </Label>
-                            </top>
-                            <right>
-                                <AnchorPane BorderPane.alignment="TOP_RIGHT">
-                                    <children>
-                                        <ImageView fx:id="exerciseImage" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER" />
-                                    </children>
-                                    <BorderPane.margin>
-                                        <Insets />
-                                    </BorderPane.margin>
-                                </AnchorPane>
-                            </right>
-                            <center>
-                                <AnchorPane>
-                                    <children>
-                                        <VBox spacing="30.0">
-                                            <children>
-                                                <GridPane hgap="10.0" vgap="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="NEVER">
+                  <VBox style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane>
+                           <children>
+                                      <Label fx:id="exerciseName" alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
+                                          <font>
+                                              <Font size="24.0" />
+                                          </font>
+                                      </Label>
+                           </children>
+                        </AnchorPane>
+                        <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                           <children>
+                                      <AnchorPane HBox.hgrow="ALWAYS">
+                                          <children>
+                                                <GridPane alignment="CENTER" hgap="10.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                     <columnConstraints>
-                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" />
-                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="25.0" />
-                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" />
+                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" />
                                                     </columnConstraints>
                                                     <rowConstraints>
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                                                     </rowConstraints>
                                                     <children>
-                                                        <Label text="Weight">
+                                                        <Label alignment="BOTTOM_LEFT" text="Weight">
                                                             <font>
-                                                                <Font size="14.0" />
+                                                                <Font size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label text="Repetitions" GridPane.rowIndex="2">
+                                                        <Label alignment="BOTTOM_LEFT" text="Repetitions" GridPane.rowIndex="2">
                                                             <font>
-                                                                <Font size="14.0" />
+                                                                <Font size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label text="Duration" GridPane.rowIndex="4">
+                                                        <Label alignment="BOTTOM_LEFT" text="Duration" GridPane.rowIndex="4">
                                                             <font>
-                                                                <Font size="14.0" />
+                                                                <Font size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label text="Comment" GridPane.rowIndex="6">
+                                                        <Label alignment="BOTTOM_LEFT" text="Comment" GridPane.rowIndex="6">
                                                             <font>
-                                                                <Font size="14.0" />
+                                                                <Font size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label fx:id="repetitionsLabel" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                                        <Label fx:id="repetitionsLabel" alignment="BOTTOM_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                                             <font>
-                                                                <Font size="14.0" />
+                                                                <Font size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label fx:id="durationLabel" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                                        <Label fx:id="durationLabel" alignment="BOTTOM_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="4">
                                                             <font>
-                                                                <Font size="14.0" />
+                                                                <Font size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <TextField fx:id="weightTextField" onKeyTyped="#weightUpdate" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                        <Label text="last" GridPane.columnIndex="1" />
-                                                        <Label fx:id="weightNowLabel" text="now" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                        <Label text="last" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                        <Label text="avg" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                        <Label fx:id="repetitionsNowLabel" text="now" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                        <Label fx:id="durationNowLabel" text="now" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                        <HBox alignment="CENTER_LEFT" onKeyReleased="#repetitionBoxUpdate" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                                        <TextField fx:id="weightTextField" onKeyTyped="#weightUpdate" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </TextField>
+                                                        <Label alignment="BOTTOM_LEFT" text="last" GridPane.columnIndex="1">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                                        <Label fx:id="weightNowLabel" alignment="BOTTOM_LEFT" text="now" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                                        <Label alignment="BOTTOM_LEFT" text="last" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                                        <Label alignment="BOTTOM_LEFT" text="avg" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                                        <Label fx:id="repetitionsNowLabel" alignment="BOTTOM_LEFT" text="now" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                                        <Label fx:id="durationNowLabel" alignment="BOTTOM_LEFT" text="now" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                                        <HBox alignment="BOTTOM_LEFT" onKeyReleased="#repetitionBoxUpdate" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                                             <children>
-                                                                <TextField fx:id="repsTextField1" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
-                                                                <TextField fx:id="repsTextField2" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
-                                                                <TextField fx:id="repsTextField3" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
-                                                                <TextField fx:id="repsTextField4" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
-                                                                <TextField fx:id="repsTextField5" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false" />
+                                                                <TextField fx:id="repsTextField1" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </TextField>
+                                                                <TextField fx:id="repsTextField2" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </TextField>
+                                                                <TextField fx:id="repsTextField3" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </TextField>
+                                                                <TextField fx:id="repsTextField4" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </TextField>
+                                                                <TextField fx:id="repsTextField5" onKeyTyped="#repetitionBoxKeyTyped" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%)" visible="false">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </TextField>
                                                             </children>
                                                         </HBox>
-                                                        <TextArea fx:id="commentTextArea" disable="true" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                                                        <Label fx:id="currentExerciseDurationLabel" text="00:00:00" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="2">
+                                                        <TextArea fx:id="commentTextArea" disable="true" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </TextArea>
+                                                        <Label fx:id="currentExerciseDurationLabel" alignment="BOTTOM_LEFT" text="00:00:00" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                                        <HBox alignment="BOTTOM_LEFT" fillHeight="false" spacing="20.0" GridPane.columnIndex="2">
                                                             <children>
-                                                                <Label fx:id="weightLabel">
+                                                                <Label fx:id="weightLabel" alignment="BOTTOM_LEFT">
                                                                     <font>
-                                                                        <Font size="14.0" />
+                                                                        <Font size="18.0" />
                                                                     </font>
                                                                 </Label>
                                                                 <ImageView fx:id="dumbellImage" fitHeight="30.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
@@ -132,121 +192,94 @@
                                                         </HBox>
                                                     </children>
                                                     <padding>
-                                                        <Insets left="10.0" top="10.0" />
+                                                        <Insets bottom="25.0" left="10.0" top="25.0" />
                                                     </padding>
                                                 </GridPane>
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </AnchorPane>
-                            </center>
-                            <bottom>
-                                <AnchorPane pickOnBounds="false" BorderPane.alignment="BOTTOM_CENTER">
+                                          </children>
+                                      </AnchorPane>
+                                      <AnchorPane fx:id="imageViewPane" HBox.hgrow="ALWAYS">
+                                          <children>
+                                    <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                                    <ImageView fx:id="exerciseImage" cache="true" fitWidth="360.0" pickOnBounds="true" preserveRatio="true">
+                                             <effect>
+                                                <Blend />
+                                             </effect>
+                                          </ImageView>
+                                       </children>
+                                    </VBox>
+                                          </children>
+                                      </AnchorPane>
+                           </children>
+                        </HBox>
+                        <AnchorPane maxHeight="300.0" minHeight="200.0" VBox.vgrow="ALWAYS">
+                           <children>
+                                          <LineChart fx:id="lineChart" animated="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
+                                              <padding>
+                                                  <Insets bottom="10.0" />
+                                              </padding>
+                                              <xAxis>
+                                                  <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+                                              </xAxis>
+                                              <yAxis>
+                                                  <NumberAxis fx:id="yAxis" side="LEFT" />
+                                              </yAxis>
+                                          </LineChart>
+                           </children>
+                        </AnchorPane>
+                                <AnchorPane pickOnBounds="false" VBox.vgrow="NEVER">
                                     <children>
-                                        <BorderPane maxWidth="700.0" prefWidth="700.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                            <bottom>
-                                                <AnchorPane BorderPane.alignment="CENTER">
+                                                <HBox AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="70.0">
                                                     <children>
-                                                        <Button fx:id="startButton" alignment="TOP_CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#startButtonClicked" prefWidth="60.0" text="Start" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="375.0" />
-                                                        <Button fx:id="finishButton" disable="true" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#finishButtonClicked" prefWidth="60.0" text="Finish" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="160.0" />
-                                                        <Button fx:id="pauseButton" disable="true" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#pauseButtonClicked" prefWidth="60.0" text="Pause" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="240.0" />
-                                                        <Button fx:id="previousButton" disable="true" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#previousButtonClicked" prefWidth="100.0" text="Previous" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
-                                                        <Button fx:id="nextButton" disable="true" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#nextButtonClicked" prefWidth="100.0" text="Next" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                                        <Label fx:id="elapsedTimeLabel" prefWidth="67.0" text="00:00:00">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                                        <Label layoutY="17.0" text=" / ">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                                        <Label fx:id="estimatedDurationLabel" text="00:00:00">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                                        </Label>
                                                     </children>
-                                                </AnchorPane>
-                                            </bottom>
-                                            <center>
-                                                <ProgressBar fx:id="progressBar" prefWidth="600.0" progress="0.0" BorderPane.alignment="CENTER">
-                                                    <padding>
-                                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                                    </padding>
-                                                </ProgressBar>
-                                            </center>
-                                            <left>
-                                                <AnchorPane>
-                                                    <children>
-                                                        <Label fx:id="startTimeLabel" text="00:00" BorderPane.alignment="CENTER" />
-                                                    </children>
-                                                    <BorderPane.margin>
-                                                        <Insets bottom="10.0" left="70.0" top="10.0" />
-                                                    </BorderPane.margin>
-                                                </AnchorPane>
-                                            </left>
-                                            <right>
-                                                <AnchorPane>
-                                                    <children>
-                                                        <Label fx:id="estimatedEndLabel" text="00:00" BorderPane.alignment="CENTER" />
-                                                    </children>
-                                                    <BorderPane.margin>
-                                                        <Insets bottom="10.0" right="70.0" top="10.0" />
-                                                    </BorderPane.margin>
-                                                </AnchorPane>
-                                            </right>
-                                            <top>
-                                                <AnchorPane BorderPane.alignment="CENTER">
-                                                    <children>
-                                                        <BorderPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                                            <left>
-                                                                <AnchorPane>
-                                                                    <children>
-                                                                        <HBox BorderPane.alignment="CENTER">
-                                                                            <children>
-                                                                                <Label fx:id="elapsedTimeLabel" prefWidth="50.0" text="00:00:00" />
-                                                                                <Label layoutY="17.0" text="/" />
-                                                                                <Label fx:id="estimatedDurationLabel" text="00:00:00">
-                                                                                    <padding>
-                                                                                        <Insets left="5.0" />
-                                                                                    </padding>
-                                                                                </Label>
-                                                                            </children>
-                                                                        </HBox>
-                                                                    </children>
-                                                                    <BorderPane.margin>
-                                                                        <Insets left="110.0" />
-                                                                    </BorderPane.margin>
-                                                                </AnchorPane>
-                                                            </left>
-                                                            <right>
-                                                                <AnchorPane>
-                                                                    <children>
-                                                                        <Label fx:id="remainedTimeLabel" prefWidth="50.0" text="00:00:00" BorderPane.alignment="CENTER" />
-                                                                    </children>
-                                                                    <BorderPane.margin>
-                                                                        <Insets right="110.0" />
-                                                                    </BorderPane.margin>
-                                                                </AnchorPane>
-                                                            </right>
-                                             <top>
-                                                <AnchorPane>
-                                                   <children>
-                                                                  <LineChart fx:id="lineChart" prefHeight="200.0" prefWidth="800.0" BorderPane.alignment="CENTER">
-                                                                      <padding>
-                                                                          <Insets bottom="10.0" />
-                                                                      </padding>
-                                                                      <xAxis>
-                                                                          <CategoryAxis side="BOTTOM" fx:id="xAxis" />
-                                                                      </xAxis>
-                                                                      <yAxis>
-                                                                          <NumberAxis fx:id="yAxis" side="LEFT" />
-                                                                      </yAxis>
-                                                                  </LineChart>
-                                                   </children>
-                                                </AnchorPane>
-                                             </top>
-                                                        </BorderPane>
-                                                    </children>
-                                                </AnchorPane>
-                                            </top>
-                                        </BorderPane>
+                                                </HBox>
+                                                <Label fx:id="remainedTimeLabel" prefWidth="70.0" text="00:00:00" AnchorPane.bottomAnchor="75.0" AnchorPane.rightAnchor="70.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                                            <Label fx:id="startTimeLabel" text="00:00" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                                            <Label fx:id="estimatedEndLabel" text="00:00" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="10.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                                          <ProgressBar fx:id="progressBar" prefHeight="20.0" progress="0.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" />
+                                            <Button fx:id="nextButton" disable="true" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#nextButtonClicked" prefWidth="100.0" text="Next" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                            <Button fx:id="previousButton" disable="true" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#previousButtonClicked" prefWidth="100.0" text="Previous" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+                              <HBox alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                 <children>
+                                                  <Button fx:id="startButton" alignment="TOP_CENTER" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#startButtonClicked" prefWidth="60.0" text="Start" />
+                                                  <Button fx:id="pauseButton" disable="true" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#pauseButtonClicked" prefWidth="100.0" text="Pause" />
+                                                  <Button fx:id="finishButton" disable="true" focusTraversable="false" mnemonicParsing="false" onMouseClicked="#finishButtonClicked" prefWidth="60.0" text="Finish" />
+                                 </children>
+                              </HBox>
                                     </children>
                                 </AnchorPane>
-                            </bottom>
-                        </BorderPane>
+                     </children>
+                  </VBox>
                     </children>
                 </AnchorPane>
-            </center>
-            <right>
-                <AnchorPane maxWidth="200.0" BorderPane.alignment="CENTER">
+                <AnchorPane maxWidth="270.0" minWidth="200.0">
                     <children>
                         <Button fx:id="removeFromWorkoutButton" disable="true" mnemonicParsing="false" onMouseClicked="#removeFromSessionClicked" prefWidth="70.0" text="Remove" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
                         <Button fx:id="addToWorkoutButton" disable="true" mnemonicParsing="false" onMouseClicked="#addToSessionClicked" prefWidth="70.0" text="Add" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
@@ -254,7 +287,7 @@
                      <panes>
                         <TitledPane animated="false" text="Biceps">
                            <content>
-                              <AnchorPane maxWidth="200.0">
+                              <AnchorPane>
                                  <children>
                                     <ListView fx:id="bicepsList" onMouseClicked="#bicepsClicked" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
@@ -263,7 +296,7 @@
                         </TitledPane>
                         <TitledPane animated="false" text="Triceps">
                            <content>
-                              <AnchorPane maxWidth="200.0">
+                              <AnchorPane>
                                  <children>
                                     <ListView fx:id="tricepsList" onMouseClicked="#tricepsClicked" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
@@ -272,7 +305,7 @@
                         </TitledPane>
                         <TitledPane animated="false" text="Chest">
                            <content>
-                              <AnchorPane maxWidth="200.0">
+                              <AnchorPane>
                                  <children>
                                     <ListView fx:id="chestList" onMouseClicked="#chestClicked" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
@@ -281,7 +314,7 @@
                         </TitledPane>
                         <TitledPane animated="false" text="Abs">
                            <content>
-                              <AnchorPane maxWidth="200.0">
+                              <AnchorPane>
                                  <children>
                                     <ListView fx:id="absList" onMouseClicked="#absClicked" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
@@ -290,7 +323,7 @@
                         </TitledPane>
                         <TitledPane animated="false" text="Back">
                            <content>
-                              <AnchorPane maxWidth="200.0">
+                              <AnchorPane>
                                  <children>
                                     <ListView fx:id="backList" cacheShape="false" onMouseClicked="#backClicked" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
@@ -299,7 +332,7 @@
                         </TitledPane>
                         <TitledPane animated="false" text="Shoulders">
                            <content>
-                              <AnchorPane maxWidth="200.0">
+                              <AnchorPane>
                                  <children>
                                     <ListView fx:id="shouldersList" onMouseClicked="#shouldersClicked" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
@@ -308,7 +341,7 @@
                         </TitledPane>
                         <TitledPane animated="false" layoutX="10.0" layoutY="135.0" text="Legs">
                            <content>
-                              <AnchorPane maxWidth="200.0">
+                              <AnchorPane>
                                  <children>
                                     <ListView fx:id="legsList" onMouseClicked="#legsClicked" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
@@ -319,7 +352,7 @@
                   </Accordion>
                     </children>
                 </AnchorPane>
-            </right>
-        </BorderPane>
+        </items>
+      </SplitPane>
     </children>
 </AnchorPane>

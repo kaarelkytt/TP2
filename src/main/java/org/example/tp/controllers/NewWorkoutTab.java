@@ -38,16 +38,10 @@ import static org.example.tp.logic.Tab.*;
 
 
 // TODO order exercises by how frequently they have been on workouts
-
-// TODO bigger texts
-
-
-// later
 // TODO reorder with drag and drop
 // TODO menubar, add toggle to change rep box update method (previous values from this or last exercise)
 // TODO menubar, add a button to add exercises to database
 // TODO menubar close
-// TODO window size change
 // TODO more exercises
 // TODO add logging
 // TODO refresh after importing
@@ -80,13 +74,14 @@ DONE
 
 * clean after session end
 * workout ids in correct order
-
 * exercise categories color
 
 * fix bug - when finished a session and then start a new one, the workouts is not showed in the list
 * reps on the graph (show all reps)
 * history calendar view and tabular view
 * history - redo old workout, dropdown menu above current workout to autofill current workout
+* window size change
+* bigger texts
  */
 
 
@@ -101,8 +96,8 @@ public class NewWorkoutTab implements Initializable {
     private AnimationTimer animationTimer;
     private TextField[] reps;
 
-    private final XYChart.Series<String, Number> weightSeries = new XYChart.Series<>();
-    private final XYChart.Series<String, Number> repSeries = new XYChart.Series<>();
+    private final XYChart.Series<String, Number> weightSeries = new XYChart.Series<>("Weights", FXCollections.observableArrayList());
+    private final XYChart.Series<String, Number> repSeries = new XYChart.Series<>("Repetitions", FXCollections.observableArrayList());
 
     @FXML
     private CategoryAxis xAxis;
@@ -286,7 +281,6 @@ public class NewWorkoutTab implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeFields();
-        initializeUIComponents();
         initializeEventHandlers();
     }
 
@@ -294,14 +288,6 @@ public class NewWorkoutTab implements Initializable {
         reps = new TextField[]{repsTextField1, repsTextField2, repsTextField3, repsTextField4, repsTextField5};
         cellFactoriesWithImages(dao.getSessionWorkouts(), sessionWorkoutsListView);
         loadExercises();
-    }
-
-    private void initializeUIComponents() {
-        weightSeries.setName("Weights");
-        repSeries.setName("Repetitions");
-        lineChart.setAnimated(false);
-        exerciseImage.setPreserveRatio(true);
-        exerciseImage.setFitWidth(360);
     }
 
     private void initializeEventHandlers() {
