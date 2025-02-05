@@ -80,7 +80,7 @@ public class MainApplication extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(true);
         primaryStage.setMinWidth(1400);
-        primaryStage.setMinHeight(800);
+        primaryStage.setMinHeight(810);
         primaryStage.getIcons().add(new Image("file:src\\main\\resources\\org\\example\\tp\\pics\\icon.png"));
 
         primaryStage.show();
