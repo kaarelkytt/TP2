@@ -1,6 +1,7 @@
 package org.example.tp.controllers;
 
 import javafx.animation.AnimationTimer;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -195,6 +197,9 @@ public class NewWorkoutTab implements Initializable {
     private ProgressBar progressBar;
 
     @FXML
+    private HBox exerciseInfoHBox;
+
+    @FXML
     public void startButtonClicked() throws IOException {
         startSession();
     }
@@ -280,8 +285,14 @@ public class NewWorkoutTab implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initializeImage();
         initializeFields();
         initializeEventHandlers();
+    }
+
+    private void initializeImage() {
+        exerciseImage.fitWidthProperty().bind(Bindings.min(600, exerciseInfoHBox.widthProperty().subtract(600)));
+        exerciseImage.fitHeightProperty().bind(Bindings.min(600, sessionWorkoutsListView.heightProperty().subtract(400)));
     }
 
     private void initializeFields() {
@@ -485,7 +496,7 @@ public class NewWorkoutTab implements Initializable {
         Workout lastWorkout = dao.findLastWorkout(currentExercise);
         int[] lastReps = null;
 
-        exerciseName.setText(currentExercise.getName() + " (" + currentExercise.getCategory().name() + ")");
+        exerciseName.setText(currentExercise.getName() + " (" + capitalize(currentExercise.getCategory().name()) + ")");
 
         if (lastWorkout != null) {
             weightLabel.setText(Float.toString(lastWorkout.getWeight()));

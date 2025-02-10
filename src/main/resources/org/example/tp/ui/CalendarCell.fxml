@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane fx:id="anchorPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <BorderPane>
-         <top>
-            <Label fx:id="dayLabel" BorderPane.alignment="CENTER_LEFT">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <BorderPane.margin>
-                  <Insets left="10.0" top="5.0" />
-               </BorderPane.margin></Label>
-         </top>
-         <center>
-            <VBox fx:id="sessionsVBox" spacing="5.0" BorderPane.alignment="CENTER">
-               <padding>
-                  <Insets left="10.0" top="5.0" />
-               </padding></VBox>
-         </center>
-      </BorderPane>
-   </children>
+   <BorderPane>
+      <top>
+         <Label fx:id="dayLabel" BorderPane.alignment="CENTER_LEFT">
+            <font>
+               <Font name="System Bold" size="14.0"/>
+            </font>
+            <BorderPane.margin>
+               <Insets left="10.0" top="5.0"/>
+            </BorderPane.margin>
+         </Label>
+      </top>
+      <center>
+         <VBox fx:id="sessionsVBox" spacing="5.0" BorderPane.alignment="CENTER">
+            <padding>
+               <Insets left="10.0" top="5.0"/>
+            </padding>
+         </VBox>
+      </center>
+   </BorderPane>
 </AnchorPane>

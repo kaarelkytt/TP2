@@ -1,39 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <MenuBar maxHeight="25.0" minHeight="25.0" prefHeight="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-                  <MenuItem mnemonicParsing="false" onAction="#importExercisesClicked" text="Import Exercises" />
-                  <MenuItem mnemonicParsing="false" onAction="#importHistoryClicked" text="Import History" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" onAction="#exportExercisesClicked" text="Export Exercises" />
-                  <MenuItem mnemonicParsing="false" onAction="#exportHistoryClicked" text="Export History" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-                  <CheckMenuItem fx:id="startRemainderCheckButton" mnemonicParsing="false" onAction="#startRemainderCheckButtonClicked" text="Remainder at the beginning" />
-                  <CheckMenuItem fx:id="endRemainderCheckButton" mnemonicParsing="false" onAction="#endRemainderCheckButtonClicked" text="Remainder at the end" />
-                  <MenuItem fx:id="editRemaindersMenuItem" mnemonicParsing="false" onAction="#editRemaindersMenuItemClicked" text="Edit remainders" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </children>
+    <MenuBar maxHeight="25.0" minHeight="25.0" prefHeight="25.0" AnchorPane.bottomAnchor="0.0"
+             AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Menu mnemonicParsing="false" text="File">
+            <MenuItem mnemonicParsing="false" onAction="#importExercisesClicked" text="Import Exercises"/>
+            <MenuItem mnemonicParsing="false" onAction="#importHistoryClicked" text="Import History"/>
+            <SeparatorMenuItem mnemonicParsing="false"/>
+            <MenuItem mnemonicParsing="false" onAction="#exportExercisesClicked" text="Export Exercises"/>
+            <MenuItem mnemonicParsing="false" onAction="#exportHistoryClicked" text="Export History"/>
+            <SeparatorMenuItem mnemonicParsing="false"/>
+            <MenuItem mnemonicParsing="false" text="Close"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+            <CheckMenuItem fx:id="startRemainderCheckButton" mnemonicParsing="false"
+                           onAction="#startRemainderCheckButtonClicked" text="Remainder at the beginning"/>
+            <CheckMenuItem fx:id="endRemainderCheckButton" mnemonicParsing="false"
+                           onAction="#endRemainderCheckButtonClicked" text="Remainder at the end"/>
+            <MenuItem fx:id="editRemaindersMenuItem" mnemonicParsing="false"
+                      onAction="#editRemaindersMenuItemClicked" text="Edit remainders"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+            <MenuItem mnemonicParsing="false" text="About"/>
+        </Menu>
+    </MenuBar>
 </AnchorPane>
